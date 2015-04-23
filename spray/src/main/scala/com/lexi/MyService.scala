@@ -1,4 +1,4 @@
-package com.example
+package com.lexi
 
 import akka.actor.Actor
 import spray.routing._
