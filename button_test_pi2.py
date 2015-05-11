@@ -36,6 +36,11 @@ GPIO.setup(LED_2, GPIO.OUT)
 GPIO.setup(LED_3, GPIO.OUT)
 GPIO.setup(LED_4, GPIO.OUT)
 
+GPIO.output(LED_1, GPIO.LOW)
+GPIO.output(LED_2, GPIO.LOW)
+GPIO.output(LED_3, GPIO.LOW)
+GPIO.output(LED_4, GPIO.LOW)
+
 try:
     while True:
         if(inputs_locked == False):
