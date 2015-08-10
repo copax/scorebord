@@ -2,18 +2,35 @@ import RPi.GPIO as GPIO
 from time import sleep
 
 # Constants for Button pins
-PUSH_BUTTON_1 = 5
-PUSH_BUTTON_2 = 6
-PUSH_BUTTON_3 = 13
-PUSH_BUTTON_4 = 19
+PUSH_BUTTON_1 = 2
+PUSH_BUTTON_2 = 4
+PUSH_BUTTON_3 = 27
+PUSH_BUTTON_4 = 10
+PUSH_BUTTON_5 = 11
+PUSH_BUTTON_6 = 6
+PUSH_BUTTON_7 = 14
+PUSH_BUTTON_8 = 18
+PUSH_BUTTON_9 = 24
+PUSH_BUTTON_10 = 8
+PUSH_BUTTON_11 = 12
+PUSH_BUTTON_12 = 20
 
-MASTER_BUTTON = 17
+MASTER_BUTTON = 19
+MASTER_LED = 26
 
 # Constants for LED pins
-LED_1 = 21
-LED_2 = 20
-LED_3 = 16
-LED_4 = 12
+LED_1 = 3
+LED_2 = 17
+LED_3 = 22
+LED_4 = 9
+LED_5 = 5
+LED_6 = 13
+LED_7 = 15
+LED_8 = 23
+LED_9 = 25
+LED_10 = 7
+LED_11 = 16
+LED_12 = 21
 
 inputs_locked = False
 led_activated = 0
@@ -26,6 +43,14 @@ GPIO.setup(PUSH_BUTTON_1, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 GPIO.setup(PUSH_BUTTON_2, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 GPIO.setup(PUSH_BUTTON_3, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 GPIO.setup(PUSH_BUTTON_4, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+GPIO.setup(PUSH_BUTTON_5, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+GPIO.setup(PUSH_BUTTON_6, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+GPIO.setup(PUSH_BUTTON_7, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+GPIO.setup(PUSH_BUTTON_8, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+GPIO.setup(PUSH_BUTTON_9, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+GPIO.setup(PUSH_BUTTON_10, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+GPIO.setup(PUSH_BUTTON_11, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+GPIO.setup(PUSH_BUTTON_12, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 
 GPIO.setup(MASTER_BUTTON, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 
@@ -35,11 +60,27 @@ GPIO.setup(LED_1, GPIO.OUT)
 GPIO.setup(LED_2, GPIO.OUT)
 GPIO.setup(LED_3, GPIO.OUT)
 GPIO.setup(LED_4, GPIO.OUT)
+GPIO.setup(LED_5, GPIO.OUT)
+GPIO.setup(LED_6, GPIO.OUT)
+GPIO.setup(LED_7, GPIO.OUT)
+GPIO.setup(LED_8, GPIO.OUT)
+GPIO.setup(LED_9, GPIO.OUT)
+GPIO.setup(LED_10, GPIO.OUT)
+GPIO.setup(LED_11, GPIO.OUT)
+GPIO.setup(LED_12, GPIO.OUT)
 
 GPIO.output(LED_1, GPIO.LOW)
 GPIO.output(LED_2, GPIO.LOW)
 GPIO.output(LED_3, GPIO.LOW)
 GPIO.output(LED_4, GPIO.LOW)
+GPIO.output(LED_5, GPIO.LOW)
+GPIO.output(LED_6, GPIO.LOW)
+GPIO.output(LED_7, GPIO.LOW)
+GPIO.output(LED_8, GPIO.LOW)
+GPIO.output(LED_9, GPIO.LOW)
+GPIO.output(LED_10, GPIO.LOW)
+GPIO.output(LED_11, GPIO.LOW)
+GPIO.output(LED_12, GPIO.LOW)
 
 try:
     while True:
@@ -64,6 +105,46 @@ try:
                 inputs_locked = True
                 GPIO.output(LED_4, GPIO.HIGH)
                 led_activated = LED_4
+            elif(GPIO.input(PUSH_BUTTON_5) == GPIO.LOW):
+                print("PB 5 pressed")
+                inputs_locked = True
+                GPIO.output(LED_5, GPIO.HIGH)
+                led_activated = LED_5
+            elif(GPIO.input(PUSH_BUTTON_6) == GPIO.LOW):
+                print("PB 6 pressed")
+                inputs_locked = True
+                GPIO.output(LED_6, GPIO.HIGH)
+                led_activated = LED_6
+            elif(GPIO.input(PUSH_BUTTON_7) == GPIO.LOW):
+                print("PB 7 pressed")
+                inputs_locked = True
+                GPIO.output(LED_7, GPIO.HIGH)
+                led_activated = LED_7
+            elif(GPIO.input(PUSH_BUTTON_8) == GPIO.LOW):
+                print("PB 8 pressed")
+                inputs_locked = True
+                GPIO.output(LED_8, GPIO.HIGH)
+                led_activated = LED_8
+            elif(GPIO.input(PUSH_BUTTON_9) == GPIO.LOW):
+                print("PB 9 pressed")
+                inputs_locked = True
+                GPIO.output(LED_9, GPIO.HIGH)
+                led_activated = LED_9
+            elif(GPIO.input(PUSH_BUTTON_10) == GPIO.LOW):
+                print("PB 10 pressed")
+                inputs_locked = True
+                GPIO.output(LED_10, GPIO.HIGH)
+                led_activated = LED_10
+            elif(GPIO.input(PUSH_BUTTON_11) == GPIO.LOW):
+                print("PB 11 pressed")
+                inputs_locked = True
+                GPIO.output(LED_11, GPIO.HIGH)
+                led_activated = LED_11
+            elif(GPIO.input(PUSH_BUTTON_12) == GPIO.LOW):
+                print("PB 12 pressed")
+                inputs_locked = True
+                GPIO.output(LED_12, GPIO.HIGH)
+                led_activated = LED_12
         else:
             if(GPIO.input(MASTER_BUTTON) == GPIO.LOW):
                 print("Master Button pressed")
