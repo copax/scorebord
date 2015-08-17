@@ -90,65 +90,76 @@ try:
                 inputs_locked = True
                 GPIO.output(LED_1, GPIO.HIGH)
                 led_activated = LED_1
+                continue
             elif(GPIO.input(PUSH_BUTTON_2) == GPIO.LOW):
                 print("PB 2 pressed")
                 inputs_locked = True
                 GPIO.output(LED_2, GPIO.HIGH)
                 led_activated = LED_2
+                continue
             elif(GPIO.input(PUSH_BUTTON_3) == GPIO.LOW):
                 print("PB 3 pressed")
                 inputs_locked = True
                 GPIO.output(LED_3, GPIO.HIGH)
                 led_activated = LED_3
+                continue
             elif(GPIO.input(PUSH_BUTTON_4) == GPIO.LOW):
                 print("PB 4 pressed")
                 inputs_locked = True
                 GPIO.output(LED_4, GPIO.HIGH)
                 led_activated = LED_4
+                continue
             elif(GPIO.input(PUSH_BUTTON_5) == GPIO.LOW):
                 print("PB 5 pressed")
                 inputs_locked = True
                 GPIO.output(LED_5, GPIO.HIGH)
                 led_activated = LED_5
+                continue
             elif(GPIO.input(PUSH_BUTTON_6) == GPIO.LOW):
                 print("PB 6 pressed")
                 inputs_locked = True
                 GPIO.output(LED_6, GPIO.HIGH)
                 led_activated = LED_6
+                continue
             elif(GPIO.input(PUSH_BUTTON_7) == GPIO.LOW):
                 print("PB 7 pressed")
                 inputs_locked = True
                 GPIO.output(LED_7, GPIO.HIGH)
                 led_activated = LED_7
+                continue
             elif(GPIO.input(PUSH_BUTTON_8) == GPIO.LOW):
                 print("PB 8 pressed")
                 inputs_locked = True
                 GPIO.output(LED_8, GPIO.HIGH)
                 led_activated = LED_8
+                continue
             elif(GPIO.input(PUSH_BUTTON_9) == GPIO.LOW):
                 print("PB 9 pressed")
                 inputs_locked = True
                 GPIO.output(LED_9, GPIO.HIGH)
                 led_activated = LED_9
+                continue
             elif(GPIO.input(PUSH_BUTTON_10) == GPIO.LOW):
                 print("PB 10 pressed")
                 inputs_locked = True
                 GPIO.output(LED_10, GPIO.HIGH)
                 led_activated = LED_10
+                continue
             elif(GPIO.input(PUSH_BUTTON_11) == GPIO.LOW):
                 print("PB 11 pressed")
                 inputs_locked = True
                 GPIO.output(LED_11, GPIO.HIGH)
                 led_activated = LED_11
+                continue
             elif(GPIO.input(PUSH_BUTTON_12) == GPIO.LOW):
                 print("PB 12 pressed")
                 inputs_locked = True
                 GPIO.output(LED_12, GPIO.HIGH)
                 led_activated = LED_12
+                continue
         else:
             if(GPIO.input(MASTER_BUTTON) == GPIO.LOW):
                 print("Master Button pressed")
-                GPIO.output(led_activated, GPIO.LOW)
                 inputs_locked = False
 except KeyboardInterrupt:
     GPIO.cleanup()
