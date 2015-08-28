@@ -6,15 +6,15 @@ require 'Slim/Slim.php';
 
 $app = new \Slim\Slim();
 
-$app->get('/fetchteams/:mode/:buttonid', function ($mode,$buttonid) use ($app, $db) {
-	//$sql = "insert into rsak.client_dog_x (dog_id,client_id) VALUES (:dogid, :clientid)";
-	$sql= "select st.name from rsak.sb_teams st join rsak.sb_team_btn_game_x stbgx on (st.code = stbgx.team_code)" .
-		"where stbgx.btn_code = :buttonid and game_id = :mode";
+$app->get('/fetchteam/:mode', function ($mode) use ($app, $db) {
+	$sql= "select * from rsak.sb_teams st ".
+		"join rsak.sb_team_btn_game_x stbgx on (st.code = stbgx.team_code) ".
+		"join rsak.sb_current_team sct on (sct.code = stbgx.btn_code) " .
+		"where stbgx.game_id = :mode";
 	try {
 		$db = getConnection();
 		$stmt = $db->prepare($sql);
 		$stmt->bindParam("mode",$mode);
-		$stmt->bindParam("buttonid",$buttonid);
 
 		$stmt->execute();
 		$team = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -25,35 +25,33 @@ $app->get('/fetchteams/:mode/:buttonid', function ($mode,$buttonid) use ($app, $
 	}
 });
 
-$app->get('/fetchcurrentteam', function()use ($app, $db) {
-   $sql = "select st.name from rsak.sb_current_team";
+$app->post('/setteam/:code', function ($code) use ($app, $db) {
+	$sql = "insert into rsak.sb_current_team (code) VALUES (:code)";
 	try {
 		$db = getConnection();
 		$stmt = $db->prepare($sql);
-
-			$stmt->execute();
-		$team = $stmt->fetchAll(PDO::FETCH_OBJ);
-		$db = null;
-		echo '{"team" : ' . json_encode($team) .'}';
-	} catch(PDOException $e) {
-		echo '{"error":{"text":'. $e->getMessage() .'}}';
-	}
-});
-
-$app->post('/setcurrentteam/:buttonid', function ($buttonid) use ($app, $db) {
-	$sql = "insert into rsak.sb_current_team (dog_id,client_id) VALUES (:dogid, :clientid)";
-	try {
-		$db = getConnection();
-		$stmt = $db->prepare($sql);
-		$stmt->bindParam("dogid",$dogid);
-		$stmt->bindParam("clientid",$clientid);
+		$stmt->bindParam("code",$code);
 		$stmt->execute();
 		$db = null;
-		echo '{"success":{"clientid":' . $clientid . ',"dogid":' . $dogid . '}}';
+		echo '{"success":{"code":' . $code . '}}';
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}';
 	}
 });
+
+$app->post('/resetteam', function () use ($app, $db) {
+    $sql = "truncate table rsak.sb_current_team";
+    try {
+        $db = getConnection();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $db = null;
+        echo '{"success":{ }}';
+    } catch(PDOException $e) {
+        echo '{"error":{"text":'. $e->getMessage() .'}}';
+    }
+});
+
 
 $app->run();
 
