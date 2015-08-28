@@ -52,7 +52,28 @@ $app->post('/resetteam', function () use ($app, $db) {
     }
 });
 
+$app->post('/loadquestion', function () use ($app,$db) {
+	$reqbody = json_decode($app->request()->getBody());
+	var_dump($reqbody);
+	$sql = "insert into rsak.sb_question(category_id, answer, question, airdate, amount) " .
+			"values (:category_id,:answer,:question,:airdate,:amount)";
 
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam("category_id",$reqbody->{'category_id'});
+		$stmt->bindParam("answer",$reqbody->{'answer'});
+		$stmt->bindParam("question",$reqbody->{'question'});
+		$stmt->bindParam("airdate",$reqbody->{'airdate'});
+		$stmt->bindParam("amount",$reqbody->{'amount'});
+
+		$stmt->execute();
+		$db = null;
+		echo '{"success":{}}';
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}';
+	}
+});
 $app->run();
 
 function getConnection() {
