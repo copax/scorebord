@@ -1,6 +1,5 @@
 import RPi.GPIO as GPIO
 from time import sleep
-import urllib
 import urllib2
 
 # Constants for Button pins
@@ -172,20 +171,22 @@ try:
                 led_activated = LED_12
                 button_pressed = "BTN12"
                 continue
+
+            #call the webservice and pass button_pressed (BTN01-12)
+            url = 'http://rsak.proxzerk.com/api_scoreboard/index.php/setteam/'+ button_pressed
+            response = urllib2.urlopen(url).read()
         else:
             if(GPIO.input(MASTER_BUTTON) == GPIO.LOW):
                 print("Master Button pressed")
                 inputs_locked = False
-                button_pressed = "BTNRESET"
+                button_pressed = "resetteam"
+            #call the webservice and pass button_pressed (BTN01-12)
+            url = 'http://rsak.proxzerk.com/api_scoreboard/index.php/resetteam/'
+            response = urllib2.urlopen(url).read()
 except KeyboardInterrupt:
     GPIO.cleanup()
 
-    #call the webservice and pass button_pressed (BTN01-12 or RESET) string
-    url = 'http://rsak.proxzerk.com/api_scoreboard/index.php/fetchteams'
-    params = urllib.urlencode({
-        'button_pressed': button_pressed
-    })
-    response = urllib2.urlopen(url, params).read()
+
 
 
 
