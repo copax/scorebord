@@ -180,7 +180,7 @@ try:
                 print("Master Button pressed")
                 inputs_locked = False
                 button_pressed = "resetteam"
-            #call the webservice and pass button_pressed (BTN01-12)
+            #call the webservice and pass button_pressed (ressetteam)
             url = 'http://rsak.proxzerk.com/api_scoreboard/index.php/resetteam/'
             response = urllib2.urlopen(url).read()
 except KeyboardInterrupt:
