@@ -55,8 +55,8 @@ $app->post('/resetteam', function () use ($app, $db) {
 $app->post('/loadquestion', function () use ($app,$db) {
 	$reqbody = json_decode($app->request()->getBody());
 	var_dump($reqbody);
-	$sql = "insert into rsak.sb_question(category_id, answer, question, airdate, amount) " .
-			"values (:category_id,:answer,:question,:airdate,:amount)";
+	$sql = "insert into rsak.sb_question(category_id, answer, question, airdate, amount, insdate) " .
+			"values (:category_id,:answer,:question,:airdate,:amount, now())";
 
 	try {
 		$db = getConnection();
@@ -74,6 +74,25 @@ $app->post('/loadquestion', function () use ($app,$db) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}';
 	}
 });
+
+$app->get('/getquestions', function () use ($app,$db) {
+	$sql = "select sc.cat_name,sq.question,sq.answer, sq.amount " .
+		"from rsak.sb_question sq " .
+		"join rsak.sb_category sc on (sq.category_id = sc.cat_id) " .
+		"order by sq.airdate, sc.cat_name, sq.amount";
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);
+
+		$stmt->execute();
+		$team = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$db = null;
+		echo '{"questions" : ' . json_encode($team) .'}';
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}';
+	}
+});
+
 $app->run();
 
 function getConnection() {
