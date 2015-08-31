@@ -49,12 +49,13 @@ create table rsak.sb_current_team(
 
 drop table rsak.sb_question;
 create table rsak.sb_question(
-	id int not null auto_increment,
-    category_id int not null,
-    answer varchar(255) not null,
-    question varchar(50) not null,
-    airdate varchar(25) not null,
-    amount int not null,
-    primary key (id),
-    unique key sb_question_uk (category_id, answer,question,airdate,amount)
+  id int not null auto_increment,
+  category_id int not null,
+  answer varchar(50) not null,
+  question varchar(255) not null,
+  airdate varchar(25) not null,
+  insdate date not null,
+  amount int not null,
+  primary key (id),
+  unique key sb_question_uk (category_id, answer,question,airdate,amount)
 );
