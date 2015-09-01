@@ -19,12 +19,12 @@ gulp.task('livereload', function() {
 gulp.task('sass', function() {
   gulp.src('styles/main.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest('./styles'));
 });
 
 gulp.task('watch', function() {
-  gulp.watch('styles/*.scss', ['sass'])
-    .pipe(watch().on('error', watch.logError));
+  gulp.watch('/styles/*.scss', ['sass']);
+  gulp.watch('src/*.js');
 });
 
 gulp.task('default', ['sass', 'webserver', 'livereload', 'watch']);

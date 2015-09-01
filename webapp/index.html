@@ -2,13 +2,15 @@
 <html ng-app="app">
   <head>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,500,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/main.css" />
 
     <script data-require="jquery@*" data-semver="2.1.4" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script data-require="underscore.js@*" data-semver="1.8.3" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script type="text/javascript" src="https://code.angularjs.org/1.3.15/angular.min.js"></script>
+
     <script src="src/app.js"></script>
     <script src="src/services.js"></script>
+    <script src="src/directives.js"></script>
     <script src="src/soundService.js"></script>
     <script src="src/angular.audio.js"></script>
   </head>
@@ -17,9 +19,9 @@
     <div class="trivia-container">
       <div class="trivia-column" ng-repeat="cat in categories">
         <h2 class="trivia-question trivia-category">{{cat.cat_name}}</h2>
-        <trivia-question question="question" ng-repeat="question in cat.questions | orderBy: 'amount' | limitTo: 5"></trivia-question>
+        <trivia-question question="question" ng-repeat="question in cat.questions | orderBy: 'amount'"></trivia-question>
       </div>
-      <!-- <button class='btn btn-primary' ng-click='audio.paused ? audio.play() : audio.pause()'>{{audio.paused ? "Play" : "Pause" }}</button> -->
     </div>
+    <button class='btn btn-primary' ng-click='audio.paused ? audio.play() : audio.pause()'>{{audio.paused ? "Play" : "Pause" }}</button>
   </body>
 </html>
