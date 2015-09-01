@@ -9,8 +9,10 @@
 
     $scope.deactivateAll 
 
-    $scope.audio = ngAudio.load($scope.audioFiles[0]);
-    $scope.audio.volume = 0.8;
+    //DEBUG:
+    //$scope.audio = ngAudio.load($scope.audioFiles[0]);
+    //$scope.audio.volume = 0.8;
+    //$scope.audio.play();
 
 
 
