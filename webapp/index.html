@@ -18,8 +18,7 @@
   <body ng-controller="TriviaCtrl">
     <div class="trivia-container">
       <div class="trivia-column" ng-repeat="cat in categories">
-        <h2 class="trivia-question trivia-category">{{cat.cat_name}}</h2>
-        <trivia-question question="question" ng-repeat="question in cat.questions | orderBy: 'amount'"></trivia-question>
+        
       </div>
     </div>
     <button class='btn btn-primary' ng-click='audio.paused ? audio.play() : audio.pause()'>{{audio.paused ? "Play" : "Pause" }}</button>

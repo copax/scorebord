@@ -6,15 +6,13 @@
   function TriviaController($scope, $http, QuestionService, SoundService, ngAudio) {
     $scope.categories = QuestionService.getQuestions().categories;
     $scope.audioFiles = SoundService.getAudioFiles();
-    $scope.activate = activate;
+
+    $scope.deactivateAll 
 
     $scope.audio = ngAudio.load($scope.audioFiles[0]);
     $scope.audio.volume = 0.8;
 
-    function activate(question) {
-      deactivateAll();
-      question.active = true;
-    }
+
 
     function deactivateAll() {
       $scope.categories.forEach(function(category) {
