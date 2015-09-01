@@ -32,10 +32,21 @@
       link: function($scope, elem, attr, ctrl) {
         $scope.activate = activate;
 
-        var woosh = SoundService.getWooshingEffect();
+        var woosh = SoundService.getWooshingEffect(),
+            timedOut = SoundService.getTakenTooLongToAnswer();
+
+        woosh.volume = 0.5;
+        timedOut.volume = 1.0;
 
         function activate(question) {
           woosh.play();
+
+          function outOfTime() {
+            timedOut.play();
+            QuestionService.deactivateAll();
+          }
+
+          window.setTimeout(outOfTime, 5000);
 
           QuestionService.deactivateAll();
           question.active = true;
