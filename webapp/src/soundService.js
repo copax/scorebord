@@ -4,7 +4,7 @@
 (function() {
   angular.
   module('app').
-  service('SoundService', function() {
+  service('SoundService', ['ngAudio', function(ngAudio) {
     this.getAudioFiles = function() {
      return [
         'snd/j-woosh.wav',
@@ -26,21 +26,21 @@
      * Description: The Daily Double sound effect
      */
     this.getDailyDouble = function() {
-      return 'snd/jdaily2x.wav';
+      return ngAudio.load('snd/jdaily2x.wav');
     }
 
     /*
      * Description: The 'blong' from the Final Jeopardy answer reveal
      */
     this.getFinalJeopardyAnswerReveal = function() {
-      return 'snd/jfinalj.wav';
+      return ngAudio.load('snd/jfinalj.wav');
     }
 
     /*
      * Description: This sound signals the end of the round
      */
     this.getEndOfRound = function() {
-      return 'snd/jdits.wav';
+      return ngAudio.load('snd/jdits.wav');
     }
 
     /*
@@ -48,7 +48,7 @@
      * or no players respond, this is played
      */
     this.getRunOutOfTimeToAnswer = function() {
-      return 'snd/jtime.wav';
+      return ngAudio.load('snd/jtime.wav');
     }
 
     /*
@@ -56,21 +56,21 @@
      * amounts into the board
      */
     this.getLoadingDollarAmount = function() {
-      return 'snd/jboardfill.wav';
+      return ngAudio.load('snd/jboardfill.wav');
     }
 
     /*
      * Description: A series of bell clangs signals a Daily Double
      */
     this.getBellClangForDailDouble = function() {
-      return 'snd/j64-dailydoub.wav';
+      return ngAudio.load('snd/j64-dailydoub.wav');
     }
 
     /*
      * Description: 2 double clangs means the end of a round
      */
     this.getDoubleEndOfRound = function() {
-      return 'snd/64-endround.wav';
+      return ngAudio.load('snd/64-endround.wav');
     }
 
     /*
@@ -78,14 +78,14 @@
      * too long to answer
      */
     this.getTakenTooLongToAnswer = function() {
-      return 'snd/j64-outtatime.wav';
+      return ngAudio.load('snd/j64-outtatime.wav');
     }
 
     /*
      * Description: This ding was played when contestants rang-in
      */
     this.getContestantsRangIn = function() {
-      return 'snd/j64-ringin.wav';
+      return ngAudio.load('snd/j64-ringin.wav');
     }
 
     /*
@@ -93,7 +93,7 @@
      * would appear on-screen
      */
     this.getWooshingEffect = function() {
-      return 'snd/j-woosh.wav';
+      return ngAudio.load('snd/j-woosh.wav');
     }
 
     /*
@@ -102,7 +102,7 @@
      * loaded in
      */
     this.getWhooshingEffectToWipeScreen = function() {
-      return 'snd/jeop-dj84woosh.wav';
+      return ngAudio.load('snd/jeop-dj84woosh.wav');
     }
-  });
+  }]);
 })();

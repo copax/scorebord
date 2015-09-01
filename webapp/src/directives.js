@@ -2,7 +2,7 @@
   angular.
   module('app').
   directive('triviaCategory', ['QuestionService', TriviaCategory]).
-  directive('triviaQuestion', ['QuestionService', TriviaQuestion]);
+  directive('triviaQuestion', ['QuestionService', 'SoundService', 'ngAudio', TriviaQuestion]);
 
   function TriviaCategory(QuestionService) {
     return {
@@ -21,7 +21,7 @@
     }
   }
 
-  function TriviaQuestion(QuestionService) {
+  function TriviaQuestion(QuestionService, SoundService, ngAudio) {
     return {
       restrict: 'E',
       templateUrl: '../templates/question.tpl.html',
@@ -32,7 +32,11 @@
       link: function($scope, elem, attr, ctrl) {
         $scope.activate = activate;
 
+        var woosh = SoundService.getWooshingEffect();
+
         function activate(question) {
+          woosh.play();
+
           QuestionService.deactivateAll();
           question.active = true;
         }
