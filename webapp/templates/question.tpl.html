@@ -1,0 +1,17 @@
+<div class="trivia-question"
+    ng-click="activate(question)"
+    ng-switch="question.active"
+    ng-init="question.active = false">
+
+  <span>{{question.amount}}</span>
+
+  <div class="modal" ng-switch-when="true">
+    <div class="active">
+      <div class="face">
+        {{question.question}}
+
+        <button class="reveal">Reveal</button>
+      </div>
+    </div>
+  </div>
+</div>
