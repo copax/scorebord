@@ -7,9 +7,9 @@ require 'Slim/Slim.php';
 $app = new \Slim\Slim();
 
 $app->get('/fetchteam/:mode', function ($mode) use ($app, $db) {
-	$sql= "select * from rsak.sb_teams st ".
-		"join rsak.sb_team_btn_game_x stbgx on (st.code = stbgx.team_code) ".
-		"join rsak.sb_current_team sct on (sct.code = stbgx.btn_code) " .
+	$sql= "select * from scorebord.sb_teams st ".
+		"join scorebord.sb_team_btn_game_x stbgx on (st.code = stbgx.team_code) ".
+		"join scorebord.sb_current_team sct on (sct.code = stbgx.btn_code) " .
 		"where stbgx.game_id = :mode";
 	try {
 		$db = getConnection();
@@ -26,7 +26,7 @@ $app->get('/fetchteam/:mode', function ($mode) use ($app, $db) {
 });
 
 $app->post('/setteam/:code', function ($code) use ($app, $db) {
-	$sql = "insert into rsak.sb_current_team (code) VALUES (:code)";
+	$sql = "insert into scorebord.sb_current_team (code) VALUES (:code)";
 	try {
 		$db = getConnection();
 		$stmt = $db->prepare($sql);
@@ -40,7 +40,7 @@ $app->post('/setteam/:code', function ($code) use ($app, $db) {
 });
 
 $app->post('/resetteam', function () use ($app, $db) {
-    $sql = "truncate table rsak.sb_current_team";
+    $sql = "truncate table scorebord.sb_current_team";
     try {
         $db = getConnection();
         $stmt = $db->prepare($sql);
@@ -55,7 +55,7 @@ $app->post('/resetteam', function () use ($app, $db) {
 $app->post('/loadquestion', function () use ($app,$db) {
 	$reqbody = json_decode($app->request()->getBody());
 	var_dump($reqbody);
-	$sql = "insert into rsak.sb_question(category_id, answer, question, airdate, amount, insdate) " .
+	$sql = "insert into scorebord.sb_question(category_id, answer, question, airdate, amount, insdate) " .
 			"values (:category_id,:answer,:question,:airdate,:amount, now())";
 
 	try {
@@ -77,8 +77,8 @@ $app->post('/loadquestion', function () use ($app,$db) {
 
 $app->get('/getquestions', function () use ($app,$db) {
 	$sql = "select sc.cat_name,sq.question,sq.answer, sq.amount " .
-		"from rsak.sb_question sq " .
-		"join rsak.sb_category sc on (sq.category_id = sc.cat_id) " .
+		"from scorebord.sb_question sq " .
+		"join scorebord.sb_category sc on (sq.category_id = sc.cat_id) " .
 		"order by sq.airdate, sc.cat_name, sq.amount";
 	try {
 		$db = getConnection();
@@ -96,10 +96,10 @@ $app->get('/getquestions', function () use ($app,$db) {
 $app->run();
 
 function getConnection() {
-	$dbhost="rsak.db.11594131.hostedresource.com";
-	$dbuser="rsak";
-	$dbpass="Rsak!330";
-	$dbname="rsak";
+	$dbhost="localhost";
+	$dbuser="root";
+	$dbpass="raspberrypi";
+	$dbname="scorebord";
 	$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
 	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	return $dbh;

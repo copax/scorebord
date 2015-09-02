@@ -58,6 +58,7 @@ create table scorebord.sb_question(
   airdate varchar(25) not null,
   insdate date not null,
   amount int not null,
+  round int,
   primary key (id),
   unique key sb_question_uk (category_id, answer,question,airdate,amount)
 );
