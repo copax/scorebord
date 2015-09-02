@@ -5,22 +5,16 @@
   angular.
   module('app').
   service('SoundService', ['ngAudio', function(ngAudio) {
-    this.getAudioFiles = function() {
-     return [
-        'snd/j-woosh.wav',
-        'snd/j64-endround.wav',
-        'snd/j64-ringin.wav',
-        'snd/jdaily2x.wav',
-        'snd/jeop-dj84woosh.wav',
-        'snd/j64-endround.wav',
-        'snd/jtime.wav',
-        'snd/j64-dailydoub.wav',
-        'snd/j64-outtatime.wav',
-        'snd/jboardfill.wav',
-        'snd/jdits.wav',
-        'snd/jfinalj.wav'
-      ];
+    this.sounds = {
+      wooshingEffect: ngAudio.load('snd/j-woosh.wav'),
+      takenTooLongToAnswer: ngAudio.load('snd/j64-outtatime.wav')
     };
+
+    this.killAll = function(sound) {
+      for (var prop in this.sounds) {
+        this.sounds[prop].stop();
+      }
+    }
 
     /*
      * Description: The Daily Double sound effect
@@ -78,7 +72,7 @@
      * too long to answer
      */
     this.getTakenTooLongToAnswer = function() {
-      return ngAudio.load('snd/j64-outtatime.wav');
+      return this.sounds.takenTooLongToAnswer;
     }
 
     /*
@@ -93,7 +87,7 @@
      * would appear on-screen
      */
     this.getWooshingEffect = function() {
-      return ngAudio.load('snd/j-woosh.wav');
+      return this.sounds.wooshingEffect;
     }
 
     /*

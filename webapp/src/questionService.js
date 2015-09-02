@@ -1,17 +1,11 @@
 (function() {
   angular.
   module('app').
-  service('QuestionService', function($rootScope) {
+  service('QuestionService', QuestionService);
+
+  function QuestionService() {
     var cache,
         self = this;
-
-    window.addEventListener('keyup', (function(evt) {
-      if (evt.keyCode === 27) {
-        $rootScope.$apply(function() {
-          self.deactivateAll();
-        });
-      }
-    }));
 
     this.deactivateAll = function() {
       this.cache.forEach(function(category) {
@@ -237,5 +231,5 @@
 
       return this.cache;
     };
-  });
+  }
 })();

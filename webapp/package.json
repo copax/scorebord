@@ -17,9 +17,15 @@
   },
   "homepage": "https://github.com/copax/scorebord#readme",
   "dependencies": {
+    "browserify": "^11.0.1",
     "gulp": "^3.9.0",
-    "gulp-connect": "^2.2.0",
+    "gulp-concat": "^2.6.0",
     "gulp-sass": "^2.0.4",
-    "gulp-watch": "^4.3.5"
+    "gulp-server-livereload": "^1.4.0",
+    "gulp-util": "^3.0.6",
+    "gulp-watch": "^4.3.5",
+    "node-notifier": "^4.2.3",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.4.0"
   }
 }

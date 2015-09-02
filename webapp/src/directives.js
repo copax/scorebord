@@ -12,13 +12,8 @@
       scope: {
         category: '=',
         categories: '='
-      },
-      link: function($scope, elem, attr) {
-
-      },
-      controller: function($scope) {
       }
-    }
+    };
   }
 
   function TriviaQuestion(QuestionService, SoundService, ngAudio) {
@@ -46,9 +41,11 @@
             QuestionService.deactivateAll();
           }
 
-          window.setTimeout(outOfTime, 5000);
+          myTimeouts = setTimeout(outOfTime, 5000);
+          console.log(myTimeouts);
 
           QuestionService.deactivateAll();
+
           question.active = true;
         }
       }
