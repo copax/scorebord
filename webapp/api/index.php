@@ -75,7 +75,7 @@ $app->post('/loadquestion', function () use ($app,$db) {
 	}
 });
 
-$app->get('/getquestions/:round', function () use ($app,$db) {
+$app->get('/getquestions/:round', function ($round) use ($app,$db) {
 	$sql = "select sc.cat_name,sq.question,sq.answer, sq.amount " .
 		"from scorebord.sb_question sq " .
 		"join scorebord.sb_category sc on (sq.category_id = sc.cat_id) " .
@@ -120,8 +120,6 @@ $app->get('/getquestions/:round', function () use ($app,$db) {
 		$stmt->execute();
 		$popmusic = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-
-		$team = $stmt->fetchAll(PDO::FETCH_OBJ);
 		$db = null;
 		echo '{"categories" : [ "cat_name: "Animals", questions: [{' . json_encode($animals) .'}]},' .
 			' "cat_name: "Fashion", questions: [{' . json_encode($fashion) .'}]},' .
