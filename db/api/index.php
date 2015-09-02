@@ -75,19 +75,60 @@ $app->post('/loadquestion', function () use ($app,$db) {
 	}
 });
 
-$app->get('/getquestions', function () use ($app,$db) {
+$app->get('/getquestions/:round', function () use ($app,$db) {
 	$sql = "select sc.cat_name,sq.question,sq.answer, sq.amount " .
 		"from scorebord.sb_question sq " .
 		"join scorebord.sb_category sc on (sq.category_id = sc.cat_id) " .
+		"where sc.cat_id = :category and sq.round = :round " .
 		"order by sq.airdate, sc.cat_name, sq.amount";
 	try {
 		$db = getConnection();
 		$stmt = $db->prepare($sql);
-
+		$category = 21;
+		$stmt->bindParam("category",$category);
+		$stmt->bindParam("round",$round);
 		$stmt->execute();
+		$animals = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+		$category = 26;
+		$stmt->bindParam("category",$category);
+		$stmt->bindParam("round",$round);
+		$stmt->execute();
+		$fashion = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+		$category = 49;
+		$stmt->bindParam("category",$category);
+		$stmt->bindParam("round",$round);
+		$stmt->execute();
+		$food = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+		$category = 105;
+		$stmt->bindParam("category",$category);
+		$stmt->bindParam("round",$round);
+		$stmt->execute();
+		$letters = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+		$category = 249;
+		$stmt->bindParam("category",$category);
+		$stmt->bindParam("round",$round);
+		$stmt->execute();
+		$homophones = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+		$category = 770;
+		$stmt->bindParam("category",$category);
+		$stmt->bindParam("round",$round);
+		$stmt->execute();
+		$popmusic = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+
 		$team = $stmt->fetchAll(PDO::FETCH_OBJ);
 		$db = null;
-		echo '{"questions" : ' . json_encode($team) .'}';
+		echo '{"categories" : [ "cat_name: "Animals", questions: [{' . json_encode($animals) .'}]},' .
+			' "cat_name: "Fashion", questions: [{' . json_encode($fashion) .'}]},' .
+			' "cat_name: "Food", questions: [{' . json_encode($food) .'}]},' .
+			' "cat_name: "3 Letter Words", questions: [{' . json_encode($letters) .'}]},' .
+			' "cat_name: "Homophones", questions: [{' . json_encode($homophones) .'}]},' .
+			' "cat_name: "Pop Music", questions: [{' . json_encode($popmusic) .'}]}]}';
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}';
 	}
