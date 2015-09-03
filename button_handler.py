@@ -4,8 +4,8 @@ import urllib2
 import json
 
 # Constants for Button pins
-PUSH_BUTTON_1 = 2
-PUSH_BUTTON_2 = 4
+PUSH_BUTTON_1 = 4
+PUSH_BUTTON_2 = 17
 PUSH_BUTTON_3 = 27
 PUSH_BUTTON_4 = 10
 PUSH_BUTTON_5 = 11
@@ -21,8 +21,8 @@ MASTER_BUTTON = 19
 MASTER_LED = 26
 
 # Constants for LED pins
-LED_1 = 3
-LED_2 = 17
+LED_1 = 2
+LED_2 = 3
 LED_3 = 22
 LED_4 = 9
 LED_5 = 5
@@ -59,31 +59,18 @@ GPIO.setup(MASTER_BUTTON, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 
 
 # Setup Outputs 
-GPIO.setup(LED_1, GPIO.OUT)
-GPIO.setup(LED_2, GPIO.OUT)
-GPIO.setup(LED_3, GPIO.OUT)
-GPIO.setup(LED_4, GPIO.OUT)
-GPIO.setup(LED_5, GPIO.OUT)
-GPIO.setup(LED_6, GPIO.OUT)
-GPIO.setup(LED_7, GPIO.OUT)
-GPIO.setup(LED_8, GPIO.OUT)
-GPIO.setup(LED_9, GPIO.OUT)
-GPIO.setup(LED_10, GPIO.OUT)
-GPIO.setup(LED_11, GPIO.OUT)
-GPIO.setup(LED_12, GPIO.OUT)
-
-GPIO.output(LED_1, GPIO.LOW)
-GPIO.output(LED_2, GPIO.LOW)
-GPIO.output(LED_3, GPIO.LOW)
-GPIO.output(LED_4, GPIO.LOW)
-GPIO.output(LED_5, GPIO.LOW)
-GPIO.output(LED_6, GPIO.LOW)
-GPIO.output(LED_7, GPIO.LOW)
-GPIO.output(LED_8, GPIO.LOW)
-GPIO.output(LED_9, GPIO.LOW)
-GPIO.output(LED_10, GPIO.LOW)
-GPIO.output(LED_11, GPIO.LOW)
-GPIO.output(LED_12, GPIO.LOW)
+GPIO.setup(LED_1, GPIO.OUT, initial=0)
+GPIO.setup(LED_2, GPIO.OUT, initial=0)
+GPIO.setup(LED_3, GPIO.OUT, initial=0)
+GPIO.setup(LED_4, GPIO.OUT, initial=0)
+GPIO.setup(LED_5, GPIO.OUT, initial=0)
+GPIO.setup(LED_6, GPIO.OUT, initial=0)
+GPIO.setup(LED_7, GPIO.OUT, initial=0)
+GPIO.setup(LED_8, GPIO.OUT, initial=0)
+GPIO.setup(LED_9, GPIO.OUT, initial=0)
+GPIO.setup(LED_10, GPIO.OUT, initial=0)
+GPIO.setup(LED_11, GPIO.OUT, initial=0)
+GPIO.setup(LED_12, GPIO.OUT, initial=0)
 
 def postToUrl(button_pressed):
      url = 'http://rsak.proxzerk.com/api_scoreboard/index.php/setteam/' + button_pressed
