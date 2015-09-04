@@ -1,9 +1,9 @@
 (function() {
   angular.
   module('app').
-  service('QuestionService', QuestionService);
+  service('QuestionService', ['$http', QuestionService]);
 
-  function QuestionService() {
+  function QuestionService($http) {
     var cache,
         self = this;
 
@@ -14,6 +14,18 @@
         });
       });
     };
+
+    this.allQuestionsActivated = function() {
+      return this.cache.every(function(category) {
+        return allQuestionsInCategoryActivated = category.questions.every(function(question) {
+          return question.activated;
+        });
+      });
+    };
+
+    //$http.get('/api/index.php/getquestions/1').then(function(response) {
+    //  console.log(response);
+    //});
 
     this.getQuestions = function() {
       this.cache = [

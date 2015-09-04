@@ -11,15 +11,15 @@ var myTimeouts;
   }
 
   function run($rootScope, QuestionService, SoundService) {
+    //console.log(window, window.origin);
+
     window.addEventListener('keyup', (function(evt) {
       if (evt.keyCode === 27) {
         $rootScope.$apply(function() {
           QuestionService.deactivateAll();
           SoundService.killAll();
 
-          clearTimeout('myTimeouts')
-
-          console.log(myTimeouts);
+          clearTimeout(myTimeouts);
         });
       }
     }));

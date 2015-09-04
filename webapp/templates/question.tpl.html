@@ -1,9 +1,8 @@
-<div class="trivia-question"
+<div class="trivia-question ng-class:{'activated': question.activated}"
     ng-click="activate(question)"
-    ng-switch="question.active"
-    ng-init="question.active = false">
+    ng-switch="question.active">
 
-  <span>{{question.amount}}</span>
+  <span class="amount">{{question.amount}}</span>
 
   <div class="modal" ng-switch-when="true">
     <div class="active">
@@ -11,6 +10,8 @@
         {{question.question}}
 
         <button class="reveal">Reveal</button>
+      </div>
+      <div class="back">
       </div>
     </div>
   </div>

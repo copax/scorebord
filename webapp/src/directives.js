@@ -27,6 +27,9 @@
       link: function($scope, elem, attr, ctrl) {
         $scope.activate = activate;
 
+        $scope.question.active = false;
+        $scope.question.activated = false;
+
         var woosh = SoundService.getWooshingEffect(),
             timedOut = SoundService.getTakenTooLongToAnswer();
 
@@ -34,19 +37,24 @@
         timedOut.volume = 1.0;
 
         function activate(question) {
-          woosh.play();
+          if (!question.activated) {
+            woosh.play();
 
-          function outOfTime() {
-            timedOut.play();
+            console.log();
+
+            function outOfTime() {
+              timedOut.play();
+              QuestionService.deactivateAll();
+            }
+
+            myTimeouts = setTimeout(outOfTime, 5000);
+
             QuestionService.deactivateAll();
+            question.active = true;
+            question.activated = true;
+
+            console.log(QuestionService.allQuestionsActivated());
           }
-
-          myTimeouts = setTimeout(outOfTime, 5000);
-          console.log(myTimeouts);
-
-          QuestionService.deactivateAll();
-
-          question.active = true;
         }
       }
     };
