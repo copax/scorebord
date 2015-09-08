@@ -15,8 +15,15 @@ var myTimeouts;
 
     function buttonPoll() {
       $http.get('/api/index.php/fetchteam/2TMS').then(function(response) {
-        console.log(response);
-        $scope.team = response.data.team;
+        if (response.data && response.data.team.length) {
+          if (response.data.team[0].name !== $scope.team) {
+            $scope.team = response.data.team[0].name;
+          }
+        } else {
+          if ($scope.team !== 'BRAINS') {
+            $scope.team = 'BRAINS';
+          }
+        }
       });
     }
 

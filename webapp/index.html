@@ -16,6 +16,7 @@
   </head>
 
   <body ng-controller="TriviaCtrl">
+    <h1 class="buzz">{{team}}</h1>
     <div class="trivia-container">
       <trivia-category ng-repeat="category in categories" category="category" categories="categories"></trivia-category>
     </div>
