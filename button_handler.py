@@ -1,7 +1,9 @@
 import RPi.GPIO as GPIO
 from time import sleep
 import urllib2
+import urllib
 import json
+import sys
 
 # Constants for Button pins
 PUSH_BUTTON_1 = 4
@@ -72,14 +74,19 @@ GPIO.setup(LED_10, GPIO.OUT, initial=0)
 GPIO.setup(LED_11, GPIO.OUT, initial=0)
 GPIO.setup(LED_12, GPIO.OUT, initial=0)
 
+
+HOSTNAME="localhost"
+
 def postToUrl(button_pressed):
-     url = 'http://rsak.proxzerk.com/api_scoreboard/index.php/setteam/' + button_pressed
-     response = urllib2.urlopen(url).read()
+     url = 'http://' + HOSTNAME + '/api/index.php/setteam/' + button_pressed
+     data = urllib.urlencode({'blah' : ''})
+     response = urllib2.urlopen(url, data).read()
      print json.dumps(response)
 
 def postReset():
-    url = 'http://rsak.proxzerk.com/api_scoreboard/index.php/resetteam/'
-    response = urllib2.urlopen(url).read()
+    url = 'http://' + HOSTNAME + '/api/index.php/resetteam'
+    data = urllib.urlencode({'blah' : ''})
+    response = urllib2.urlopen(url, data).read()
     print json.dumps(response)
 
 try:
@@ -174,16 +181,10 @@ try:
                 print("Master Button pressed")
                 inputs_locked = False
                 button_pressed = "resetteam"
-                postReset()
+                GPIO.output(led_activated, GPIO.LOW)
+		postReset()
+		continue
 
 except KeyboardInterrupt:
-    GPIO.cleanup()
-
-
-
-
-
-
-
-
-
+    	#print(sys.exc_info()[0])
+	GPIO.cleanup()
