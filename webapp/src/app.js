@@ -20,15 +20,15 @@ var myTimeouts;
             $scope.team = response.data.team[0].name;
           }
         } else {
-          if ($scope.team !== 'BRAINS') {
-            $scope.team = 'BRAINS';
+          if ($scope.team !== '') {
+            $scope.team = '';
           }
         }
       });
     }
 
     buttonPoll();
-    window.setInterval(buttonPoll, 500);
+    window.setInterval(buttonPoll, 100);
   }
 
   function run($rootScope, $http, QuestionService, SoundService) {
