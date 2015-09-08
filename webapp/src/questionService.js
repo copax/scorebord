@@ -8,11 +8,13 @@
         self = this;
 
     this.deactivateAll = function() {
-      this.cache.forEach(function(category) {
-        category.questions.forEach(function(question) {
-          question.active = false;
+      if (this.cache && this.cache.length) {
+        this.cache.forEach(function(category) {
+          category.questions.forEach(function(question) {
+            question.active = false;
+          });
         });
-      });
+      }
     };
 
     this.allQuestionsActivated = function() {
@@ -28,13 +30,10 @@
     //});
 
     this.getQuestions = function() {
-      $http.get('/api/index.php/getquestions/3').then(function(response) {
-        console.log(response)
+      return $http.get('/api/index.php/getquestions/3').then(function(response) {
+        self.cache = response.data;
+        return response.data;
       });
-
-      //this.cache =
-
-      return this.cache;
     };
   }
 })();

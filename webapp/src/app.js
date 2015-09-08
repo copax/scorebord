@@ -9,7 +9,9 @@ var myTimeouts;
   controller('TriviaCtrl', ['$scope', '$http', 'QuestionService', 'ngAudio', TriviaController]);
 
   function TriviaController($scope, $http, QuestionService) {
-    $scope.categories = QuestionService.getQuestions();
+    QuestionService.getQuestions().then(function(data) {
+      $scope.categories = data;
+    });
   }
 
   function run($rootScope, $http, QuestionService, SoundService) {
