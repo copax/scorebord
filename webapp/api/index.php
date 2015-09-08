@@ -52,7 +52,7 @@ $app->post('/resetteam', function () use ($app) {
     }
 });
 
-$app->post('/loadquestion', function () use ($app,$db) {
+$app->post('/loadquestion', function () use ($app) {
 	$reqbody = json_decode($app->request()->getBody());
 	var_dump($reqbody);
 	$sql = "insert into scorebord.sb_question(category_id, answer, question, airdate, amount, insdate) " .
@@ -75,7 +75,7 @@ $app->post('/loadquestion', function () use ($app,$db) {
 	}
 });
 
-$app->get('/getquestions/:round', function ($round) use ($app,$db) {
+$app->get('/getquestions/:round', function ($round) use ($app) {
 	$sql = "select sc.cat_name,sq.question,sq.answer, sq.amount " .
 		"from scorebord.sb_question sq " .
 		"join scorebord.sb_category sc on (sq.category_id = sc.cat_id) " .
