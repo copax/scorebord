@@ -11,7 +11,8 @@
 
         <button class="reveal">Reveal</button>
       </div>
-      <div class="back">
+      <div class="back" ng-if="question.reveal">
+        {{question.answer}}
       </div>
     </div>
   </div>

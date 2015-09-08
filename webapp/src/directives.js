@@ -36,6 +36,10 @@
         woosh.volume = 0.5;
         timedOut.volume = 1.0;
 
+        function reveal(question) {
+          question.reveal = true;
+        }
+
         function activate(question) {
           if (!question.activated) {
             woosh.play();
@@ -44,7 +48,7 @@
 
             function outOfTime() {
               timedOut.play();
-              QuestionService.deactivateAll();
+              //QuestionService.deactivateAll();
             }
 
             myTimeouts = setTimeout(outOfTime, 5000);
