@@ -1,17 +1,18 @@
 var myTimeouts;
 
-// pi raspberry
-
 (function() {
   angular.
-  module('app', []).
+  module('app', ['ngRoute']).
   run(['$rootScope', '$http', 'QuestionService', 'SoundService', run]).
-  controller('TriviaCtrl', ['$scope', '$http', 'QuestionService', 'ngAudio', TriviaController]);
+  config(['$routeProvider', config]).
+  controller('TriviaCtrl', ['$scope', '$routeParams', '$http', 'QuestionService', 'ngAudio', TriviaController]);
 
-  function TriviaController($scope, $http, QuestionService) {
-    QuestionService.getQuestions().then(function(data) {
-      $scope.categories = data;
-    });
+  function TriviaController($scope, $routeParams, $http, QuestionService) {
+    if ($routeParams && $routeParams.round) {
+      QuestionService.getQuestions($routeParams.round).then(function(data) {
+        $scope.categories = data;
+      });
+    }
 
     function buttonPoll() {
       $http.get('/api/index.php/fetchteam/2TMS').then(function(response) {
@@ -50,6 +51,21 @@ var myTimeouts;
           SoundService.killAll();
         });
       }
+    });
+  }
+
+  function config($routeProvider) {
+    $routeProvider.
+    when('/', {
+      templateUrl: '/templates/mode.selection.tpl.html',
+      controller: ''
+    }).
+    when('/rounds/:round', {
+      templateUrl: '/templates/round.tpl.html',
+      controller: 'TriviaCtrl'
+    }).
+    otherwise({
+      redirectTo: '/'
     });
   }
 })();

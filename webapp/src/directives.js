@@ -1,10 +1,10 @@
 (function() {
   angular.
   module('app').
-  directive('triviaCategory', ['QuestionService', TriviaCategory]).
+  directive('triviaCategory', ['QuestionService', '$routeParams', TriviaCategory]).
   directive('triviaQuestion', ['QuestionService', 'SoundService', 'ngAudio', TriviaQuestion]);
 
-  function TriviaCategory(QuestionService) {
+  function TriviaCategory(QuestionService, $routeParams) {
     return {
       restrict: 'E',
       templateUrl: '../templates/category.tpl.html',
@@ -12,6 +12,8 @@
       scope: {
         category: '=',
         categories: '='
+      },
+      link: function() {
       }
     };
   }

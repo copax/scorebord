@@ -25,12 +25,8 @@
       });
     };
 
-    //$http.get('/api/index.php/getquestions/1').then(function(response) {
-    //  console.log(response);
-    //});
-
-    this.getQuestions = function() {
-      return $http.get('/api/index.php/getquestions/3').then(function(response) {
+    this.getQuestions = function(round) {
+      return $http.get('/api/index.php/getquestions/' + round).then(function(response) {
         self.cache = response.data;
         return response.data;
       });
