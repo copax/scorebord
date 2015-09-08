@@ -121,12 +121,13 @@ $app->get('/getquestions/:round', function ($round) use ($app,$db) {
 		$popmusic = $stmt->fetchAll(PDO::FETCH_OBJ);
 
 		$db = null;
-		echo '{"categories" : [ "cat_name: "Animals", questions: [{' . json_encode($animals) .'}]},' .
-			' "cat_name: "Fashion", questions: [{' . json_encode($fashion) .'}]},' .
-			' "cat_name: "Food", questions: [{' . json_encode($food) .'}]},' .
-			' "cat_name: "3 Letter Words", questions: [{' . json_encode($letters) .'}]},' .
-			' "cat_name: "Homophones", questions: [{' . json_encode($homophones) .'}]},' .
-			' "cat_name: "Pop Music", questions: [{' . json_encode($popmusic) .'}]}]}';
+		echo '[{"cat_name": "Animals", "questions": ' . json_encode($animals) .'},' .
+			' { "cat_name": "Fashion", "questions": ' . json_encode($fashion) .'},' .
+			' { "cat_name": "Food", "questions": ' . json_encode($food) .'},' .
+			' { "cat_name": "3 Letter Words", "questions": ' . json_encode($letters) .'},' .
+			' { "cat_name": "Homophones", "questions": ' . json_encode($homophones) .'},' .
+			' { "cat_name": "Pop Music", "questions": ' . json_encode($popmusic) .'}' .
+			']';
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}';
 	}
