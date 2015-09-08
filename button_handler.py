@@ -79,12 +79,14 @@ HOSTNAME="localhost"
 
 def postToUrl(button_pressed):
      url = 'http://' + HOSTNAME + '/api/index.php/setteam/' + button_pressed
+     #need this to force a POST request
      data = urllib.urlencode({'blah' : ''})
      response = urllib2.urlopen(url, data).read()
      print json.dumps(response)
 
 def postReset():
     url = 'http://' + HOSTNAME + '/api/index.php/resetteam'
+    #need this to force a POST request
     data = urllib.urlencode({'blah' : ''})
     response = urllib2.urlopen(url, data).read()
     print json.dumps(response)
