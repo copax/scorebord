@@ -6,7 +6,7 @@ require 'Slim/Slim.php';
 
 $app = new \Slim\Slim();
 
-$app->get('/fetchteam/:mode', function ($mode) use ($app, $db) {
+$app->get('/fetchteam/:mode', function ($mode) use ($app) {
 	$sql= "select * from scorebord.sb_teams st ".
 		"join scorebord.sb_team_btn_game_x stbgx on (st.code = stbgx.team_code) ".
 		"join scorebord.sb_current_team sct on (sct.code = stbgx.btn_code) " .
@@ -25,7 +25,7 @@ $app->get('/fetchteam/:mode', function ($mode) use ($app, $db) {
 	}
 });
 
-$app->post('/setteam/:code', function ($code) use ($app, $db) {
+$app->post('/setteam/:code', function ($code) use ($app) {
 	$sql = "insert into scorebord.sb_current_team (code) VALUES (:code)";
 	try {
 		$db = getConnection();
@@ -39,7 +39,7 @@ $app->post('/setteam/:code', function ($code) use ($app, $db) {
 	}
 });
 
-$app->post('/resetteam', function () use ($app, $db) {
+$app->post('/resetteam', function () use ($app) {
     $sql = "truncate table scorebord.sb_current_team";
     try {
         $db = getConnection();
