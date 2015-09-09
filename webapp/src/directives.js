@@ -12,8 +12,6 @@
       scope: {
         category: '=',
         categories: '='
-      },
-      link: function() {
       }
     };
   }

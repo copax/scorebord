@@ -6,6 +6,8 @@
   function RoundController($scope, $http, $routeParams) {
     var pollInterval = setInterval(buttonPoll, 100);
 
+    $scope.team = {name: 'Awaiting Buzzes!!!'};
+
     if ($routeParams && $routeParams.round) {
       $scope.nextRound = parseInt($routeParams.round) + 1;
     }
@@ -17,8 +19,8 @@
             $scope.team = response.data.team[0];
           }
         } else {
-          if ($scope.team !== 'NO TEAM') {
-            $scope.team = 'NO TEAM';
+          if ($scope.team.name !== 'Awaiting Buzzes!!!') {
+            $scope.team = {name: 'Awaiting Buzzes!!!'};
           }
         }
       });
@@ -27,7 +29,6 @@
     $scope.$on('$destroy', function() {
       clearInterval(pollInterval);
       pollInterval = null;
-      console.log(pollInterval);
     });
   }
 })();

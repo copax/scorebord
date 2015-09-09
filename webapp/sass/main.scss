@@ -57,7 +57,7 @@ h2 {
   display: flex;
   cursor: pointer;
   text-align: center;
-  background: #ccc;
+  background: #5467ff;
   color: #fff;
   transition: all .3s ease-out;
 
@@ -155,7 +155,7 @@ h2 {
   background: #333;
 
   text-align: center;
-  font-size: 38px;
+  font-size: 24px;
   color: #fff;
 }
 
@@ -165,12 +165,13 @@ h2 {
   left: 0;
   right: 0;
   height: 40px;
-  background: #ff9900;
+  background: #2b2b2b;
 
   -webkit-display: flex;
   display: flex;
 
   a {
+    color: #fff;
     -webkit-flex: 1;
     flex: 1;
     line-height: 40px;
@@ -179,7 +180,6 @@ h2 {
     text-decoration: none;
   }
 }
-
 
 .REDD {
   background: red;

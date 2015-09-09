@@ -50,7 +50,7 @@ h2 {
   display: flex;
   cursor: pointer;
   text-align: center;
-  background: #ccc;
+  background: #5467ff;
   color: #fff;
   transition: all 0.3s ease-out;
   align-items: center;
@@ -130,9 +130,9 @@ h2 {
   right: 0;
   height: 40px;
   line-height: 40px;
-  background: #9900ff;
+  background: #333;
   text-align: center;
-  font-size: 38px;
+  font-size: 24px;
   color: #fff; }
 
 .round-footer {
@@ -141,10 +141,11 @@ h2 {
   left: 0;
   right: 0;
   height: 40px;
-  background: #ff9900;
+  background: #2b2b2b;
   -webkit-display: flex;
   display: flex; }
   .round-footer a {
+    color: #fff;
     -webkit-flex: 1;
     flex: 1;
     line-height: 40px;
@@ -162,7 +163,7 @@ h2 {
 .GRNN {
   background: green; }
 
-.YLLOW {
+.YLLW {
   background: yellow;
   color: #2b2b2b; }
 
@@ -178,7 +179,7 @@ h2 {
   background: gold; }
 
 .PRPL {
-  background: plum;
+  background: #90F;
   color: #2b2b2b; }
 
 .NAVY {
@@ -196,4 +197,8 @@ h2 {
 
 .WHIT {
   background: white;
+  color: #2b2b2b; }
+
+.SLVR {
+  background: silver;
   color: #2b2b2b; }
