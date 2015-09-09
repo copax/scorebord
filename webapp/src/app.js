@@ -9,6 +9,9 @@ var myTimeouts;
 
   function TriviaController($scope, $routeParams, $http, QuestionService) {
     if ($routeParams && $routeParams.round) {
+      $scope.round = $routeParams.round;
+      $scope.nextRound = parseInt($scope.round) + 1;
+
       QuestionService.getQuestions($routeParams.round).then(function(data) {
         $scope.categories = data;
       });
@@ -60,7 +63,7 @@ var myTimeouts;
       templateUrl: '/templates/mode.selection.tpl.html',
       controller: ''
     }).
-    when('/rounds/:round', {
+    when('/round/:round', {
       templateUrl: '/templates/round.tpl.html',
       controller: 'TriviaCtrl'
     }).

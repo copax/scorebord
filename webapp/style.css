@@ -29,7 +29,12 @@ h2 {
   display: -webkit-flex;
   display: flex;
   -webkit-flex: 1;
-  flex: 1; }
+  flex: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 40px; }
 
 .trivia-column {
   display: -webkit-flex;
@@ -69,7 +74,7 @@ h2 {
   bottom: 0;
   background: rgba(0, 0, 0, 0.5); }
 
-.active {
+.question-active {
   padding: 20px;
   font-size: 28px;
   background: #fff;
@@ -78,12 +83,10 @@ h2 {
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
   border: none;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  height: 400px;
-  width: 400px;
-  margin-top: -200px;
-  margin-left: -200px;
+  top: 25%;
+  left: 25%;
+  height: 50%;
+  width: 50%;
   animation: showQuestion 0.25s ease-in; }
 
 .reveal {
@@ -109,3 +112,30 @@ h2 {
   right: 0;
   font-size: 80px;
   color: #fff; }
+
+.selection-container {
+  padding: 40px 80px;
+  width: 100%;
+  text-align: center; }
+  .selection-container a {
+    display: block;
+    font-size: 24px;
+    line-height: 60px;
+    text-decoration: none; }
+
+.round-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: #ff9900;
+  -webkit-display: flex;
+  display: flex; }
+  .round-footer a {
+    -webkit-flex: 1;
+    flex: 1;
+    line-height: 40px;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none; }

@@ -1,1 +1,7 @@
-<trivia-category ng-repeat="category in categories" category="category" categories="categories"></trivia-category>
+<div class="trivia-container">
+  <trivia-category ng-repeat="category in categories" category="category" categories="categories"></trivia-category>
+</div>
+<footer class="round-footer">
+  <a href="#/">End Game</a>
+  <a href="#/round/{{nextRound}}">Next Round</a>
+</footer>
