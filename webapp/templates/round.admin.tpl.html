@@ -1,0 +1,10 @@
+<header class="round-header {{team.team_code}}">
+  {{team.name}}
+</header>
+<div class="trivia-container" ng-controller="TriviaCtrl">
+  <trivia-admin-category ng-repeat="category in categories" category="category" categories="categories"><trivia-admin-category>
+</div>
+<footer class="round-footer">
+  <a href="#/">End Game</a>
+  <a href="#/round/{{nextRound}}/admin">Next Round</a>
+</footer>

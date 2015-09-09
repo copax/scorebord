@@ -1,0 +1,4 @@
+<div class="trivia-column">
+  <h2 class="trivia-question trivia-category">{{category.cat_name}}</h2>
+  <trivia-admin-question question="question" ng-repeat="question in category.questions | orderBy: 'amount'"></trivia-admin-question>
+</div>
