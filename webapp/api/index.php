@@ -133,6 +133,73 @@ $app->get('/getquestions/:round', function ($round) use ($app) {
 	}
 });
 
+$app->get('/getquestionsrandom/:round', function ($round) use ($app) {
+	$sql = "select sc.cat_name, q.question, q.answer, q.amount " .
+"from (select category_id, question,answer, amount from sb_question where category_id = :category and amount = 100 order by rand() limit 1) q " .
+"join sb_category sc on q.category_id = sc.cat_id " .
+"union " .
+"select sc.cat_name, q.question, q.answer, q.amount " .
+"from (select category_id, question,answer, amount from sb_question where category_id = :category and amount = 200 order by rand() limit 1) q " .
+"join sb_category sc on q.category_id = sc.cat_id " .
+"union " .
+"select sc.cat_name, q.question, q.answer, q.amount " .
+"from (select category_id, question,answer, amount from sb_question where category_id = :category and amount = 300 order by rand() limit 1) q " .
+"join sb_category sc on q.category_id = sc.cat_id " .
+"union " .
+"select sc.cat_name, q.question, q.answer, q.amount " .
+"from (select category_id, question,answer, amount from sb_question where category_id = :category and amount = 400 order by rand() limit 1) q " .
+"join sb_category sc on q.category_id = sc.cat_id " .
+"union " .
+"select sc.cat_name, q.question, q.answer, q.amount " .
+"from (select category_id, question,answer, amount from sb_question where category_id = :category and amount = 500 order by rand() limit 1) q " .
+"join sb_category sc on q.category_id = sc.cat_id";
+	try {
+		$db = getConnection();
+		$stmt = $db->prepare($sql);
+		$category = 21;
+		$stmt->bindParam("category",$category);
+		$stmt->execute();
+		$animals = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+		$category = 26;
+		$stmt->bindParam("category",$category);
+		$stmt->execute();
+		$fashion = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+		$category = 49;
+		$stmt->bindParam("category",$category);
+		$stmt->execute();
+		$food = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+		$category = 105;
+		$stmt->bindParam("category",$category);
+		$stmt->execute();
+		$letters = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+		$category = 249;
+		$stmt->bindParam("category",$category);
+		$stmt->execute();
+		$homophones = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+		$category = 770;
+		$stmt->bindParam("category",$category);
+		$stmt->execute();
+		$popmusic = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+		$db = null;
+		echo '[{"cat_name": "Animals", "questions": ' . json_encode($animals) .'},' .
+			' { "cat_name": "Fashion", "questions": ' . json_encode($fashion) .'},' .
+			' { "cat_name": "Food", "questions": ' . json_encode($food) .'},' .
+			' { "cat_name": "3 Letter Words", "questions": ' . json_encode($letters) .'},' .
+			' { "cat_name": "Homophones", "questions": ' . json_encode($homophones) .'},' .
+			' { "cat_name": "Pop Music", "questions": ' . json_encode($popmusic) .'}' .
+			']';
+	} catch(PDOException $e) {
+		echo '{"error":{"text":'. $e->getMessage() .'}}';
+	}
+});
+
+
 $app->run();
 
 function getConnection() {
