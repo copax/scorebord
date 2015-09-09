@@ -1,23 +1,12 @@
-var myTimeouts;
-
 (function() {
   angular.
   module('app', ['ngRoute']).
   run(['$rootScope', '$http', 'QuestionService', 'SoundService', run]).
-  config(['$routeProvider', config]).
-  controller('TriviaCtrl', ['$scope', '$routeParams', '$http', 'QuestionService', 'ngAudio', TriviaController]);
-
-  function TriviaController($scope, $routeParams, $http, QuestionService) {
-    if ($routeParams && $routeParams.round) {
-      $scope.round = $routeParams.round;
-
-      QuestionService.getQuestions($routeParams.round).then(function(data) {
-        $scope.categories = data;
-      });
-    }
-  }
+  config(['$routeProvider', config]);
 
   function run($rootScope, $http, QuestionService, SoundService) {
+    var myTimeouts;
+
     window.addEventListener('keyup', (function(evt) {
       if (evt.keyCode === 27) {
         $rootScope.$apply(function() {
@@ -48,6 +37,10 @@ var myTimeouts;
     when('/round/:round', {
       templateUrl: '/templates/round.tpl.html',
       controller: 'RoundCtrl'
+    }).
+    when('/round/:round/admin', {
+      templateUrl: '/templates/round.admin.tpl.html',
+      controller: 'RoundAdminCtrl'
     }).
     otherwise({
       redirectTo: '/'

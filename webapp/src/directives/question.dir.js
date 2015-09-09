@@ -1,25 +1,12 @@
 (function() {
   angular.
   module('app').
-  directive('triviaCategory', ['QuestionService', '$routeParams', TriviaCategory]).
   directive('triviaQuestion', ['QuestionService', 'SoundService', 'ngAudio', TriviaQuestion]);
-
-  function TriviaCategory(QuestionService, $routeParams) {
-    return {
-      restrict: 'E',
-      templateUrl: '../templates/category.tpl.html',
-      replace: true,
-      scope: {
-        category: '=',
-        categories: '='
-      }
-    };
-  }
 
   function TriviaQuestion(QuestionService, SoundService, ngAudio) {
     return {
       restrict: 'E',
-      templateUrl: '../templates/question.tpl.html',
+      templateUrl: '../../templates/question.tpl.html',
       replace: true,
       scope: {
         question: '='
@@ -44,8 +31,6 @@
         function activate(question) {
           if (!question.activated) {
             woosh.play();
-
-            console.log();
 
             function outOfTime() {
               timedOut.play();
