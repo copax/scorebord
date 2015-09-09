@@ -17,8 +17,8 @@
             $scope.team = response.data.team[0].name;
           }
         } else {
-          if ($scope.team !== '') {
-            $scope.team = '';
+          if ($scope.team !== 'NO TEAM') {
+            $scope.team = 'NO TEAM';
           }
         }
       });

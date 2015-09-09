@@ -36,7 +36,7 @@ h2 {
   -webkit-flex: 1;
   flex: 1;
   position: absolute;
-  top: 0;
+  top: 40px;
   left: 0;
   right: 0;
   bottom: 40px;
@@ -143,6 +143,20 @@ h2 {
     line-height: 60px;
     text-decoration: none;
   }
+}
+
+.round-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  line-height: 40px;
+  background: #9900ff;
+
+  text-align: center;
+  font-size: 38px;
+  color: #fff;
 }
 
 .round-footer {

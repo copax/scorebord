@@ -54,7 +54,7 @@
               //QuestionService.deactivateAll();
             }
 
-            myTimeouts = setTimeout(outOfTime, 5000);
+            myTimeouts = setTimeout(outOfTime, 15000);
 
             QuestionService.deactivateAll();
             question.active = true;
