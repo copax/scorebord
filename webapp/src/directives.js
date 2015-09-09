@@ -28,6 +28,7 @@
       },
       link: function($scope, elem, attr, ctrl) {
         $scope.activate = activate;
+        $scope.reveal = reveal;
 
         $scope.question.active = false;
         $scope.question.activated = false;

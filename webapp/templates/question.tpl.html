@@ -9,7 +9,7 @@
       <div class="face">
         {{question.question}}
 
-        <button class="reveal">Reveal</button>
+        <button class="reveal" ng-click="reveal(question)">Reveal</button>
       </div>
       <div class="back" ng-if="question.reveal">
         {{question.answer}}

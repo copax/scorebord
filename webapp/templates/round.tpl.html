@@ -1,4 +1,7 @@
-<div class="trivia-container">
+<header class="round-header">
+  {{team}}
+</header>
+<div class="trivia-container" ng-controller="TriviaCtrl">
   <trivia-category ng-repeat="category in categories" category="category" categories="categories"></trivia-category>
 </div>
 <footer class="round-footer">
