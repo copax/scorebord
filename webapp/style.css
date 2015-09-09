@@ -55,14 +55,12 @@ h2 {
   transition: all 0.3s ease-out;
   align-items: center;
   justify-content: center; }
-  .trivia-question.activated {
-    background: #ff9900; }
   .trivia-question .amount {
     flex: 1;
     color: yellow; }
 
 .trivia-question:hover {
-  background: #54679f; }
+  background: #5467cc; }
 
 .modal {
   position: absolute;

@@ -2,7 +2,8 @@
     ng-click="activate(question)"
     ng-switch="question.active">
 
-  <span class="amount">{{question.amount}}</span>
+  <span class="amount" ng-if="!question.activated">{{question.amount}}</span>
+  <span class="amount" ng-if="question.activated">&nbsp;</span>
 
   <div class="modal" ng-switch-when="true">
     <div class="question-active">

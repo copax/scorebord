@@ -37,7 +37,8 @@
               //QuestionService.deactivateAll();
             }
 
-            myTimeouts = setTimeout(outOfTime, 15000);
+
+            triviaSoundTimeout = setTimeout(outOfTime, 15000);
 
             QuestionService.deactivateAll();
             question.active = true;

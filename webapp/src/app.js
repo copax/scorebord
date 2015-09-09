@@ -5,25 +5,26 @@
   config(['$routeProvider', config]);
 
   function run($rootScope, $http, QuestionService, SoundService) {
-    var myTimeouts;
+    window.triviaSoundTimeout = null;
+
+    function killAllSoundsAndDeactivate() {
+      $rootScope.$apply(function() {
+        QuestionService.deactivateAll();
+        SoundService.killAll();
+
+        clearTimeout(triviaSoundTimeout);
+      });
+    }
 
     window.addEventListener('keyup', (function(evt) {
       if (evt.keyCode === 27) {
-        $rootScope.$apply(function() {
-          QuestionService.deactivateAll();
-          SoundService.killAll();
-
-          clearTimeout(myTimeouts);
-        });
+        killAllSoundsAndDeactivate();
       }
     }));
 
     window.addEventListener('click', function(evt) {
       if (evt.target.className.indexOf('modal') !== -1) {
-        $rootScope.$apply(function() {
-          QuestionService.deactivateAll();
-          SoundService.killAll();
-        });
+        killAllSoundsAndDeactivate();
       }
     });
   }
