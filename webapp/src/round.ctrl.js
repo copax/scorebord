@@ -14,7 +14,7 @@
       $http.get('/api/index.php/fetchteam/12TM').then(function(response) {
         if (response.data && response.data.team.length) {
           if (response.data.team[0].name !== $scope.team) {
-            $scope.team = response.data.team[0].name;
+            $scope.team = response.data.team[0];
           }
         } else {
           if ($scope.team !== 'NO TEAM') {

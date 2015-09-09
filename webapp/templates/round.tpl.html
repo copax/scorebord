@@ -1,5 +1,5 @@
-<header class="round-header">
-  {{team}}
+<header class="round-header {{team.code}}">
+  {{team.name}}
 </header>
 <div class="trivia-container" ng-controller="TriviaCtrl">
   <trivia-category ng-repeat="category in categories" category="category" categories="categories"></trivia-category>
