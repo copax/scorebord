@@ -154,3 +154,46 @@ h2 {
 
 .REDD {
   background: red; }
+
+.LBLU {
+  background: cyan;
+  color: #2b2b2b; }
+
+.GRNN {
+  background: green; }
+
+.YLLOW {
+  background: yellow;
+  color: #2b2b2b; }
+
+.PINK {
+  background: pink;
+  color: #2b2b2b; }
+
+.BLCK {
+  background: black;
+  color: #fff; }
+
+.GOLD {
+  background: gold; }
+
+.PRPL {
+  background: plum;
+  color: #2b2b2b; }
+
+.NAVY {
+  background: navy; }
+
+.ORNG {
+  background: orange; }
+
+.MARO {
+  background: maroon; }
+
+.GRAY {
+  background: gray;
+  color: #2b2b2b; }
+
+.WHIT {
+  background: white;
+  color: #2b2b2b; }
