@@ -13,11 +13,6 @@
         categories: '='
       },
       link: function($scope) {
-        console.log('category linked')
-        $scope.$watch('categories', function(oldValue, newValue) {
-          console.log(newValue);
-        });
-
         $scope.categoryFinished = function() {
           return $scope.category.questions.every(function(question) {
             return question.activated;

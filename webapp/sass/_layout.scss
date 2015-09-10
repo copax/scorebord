@@ -1,0 +1,146 @@
+/* layout */
+.round-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  line-height: 40px;
+  background: #333;
+
+  text-align: center;
+  font-size: 24px;
+  color: #fff;
+}
+
+.round-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: #2b2b2b;
+
+  -webkit-display: flex;
+  display: flex;
+
+  a {
+    color: #fff;
+    -webkit-flex: 1;
+    flex: 1;
+    line-height: 40px;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+      background: #333;
+    }
+  }
+}
+
+.trivia-container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex: 1;
+  flex: 1;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  padding: 3px;
+}
+
+.trivia-column {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex: 1;
+  flex: 1;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+.trivia-question {
+  -webkit-flex: 1;
+  flex: 1;
+  display: flex;
+  cursor: pointer;
+  text-align: center;
+  background: $primary;
+  color: #fff;
+  transition: all .3s ease-out;
+  animation: loadQuestion 0.5s ease-in;
+  margin: 3px;
+  text-shadow: 0 2px rgba(0, 0, 0, 0.25);
+
+  align-items: center;
+  justify-content: center;
+
+  .amount {
+    color: $warn;
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+
+.trivia-question:hover {
+  background: lighten($primary, 15%);
+}
+
+.trivia-category > h2 {
+  font-size: 16px;
+  border-bottom: solid 1px #ccc;
+  margin: 0;
+  padding: 0;
+}
+
+.modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 1;
+}
+
+.question-active {
+  padding: 20px;
+  font-size: 28px;
+  background: #fff;
+  cursor: default;
+  color: #3b3b3b;
+  border-radius: 20px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.5);
+  border: none;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  height: 50%;
+  width: 50%;
+  animation: showQuestion 0.25s ease-in;
+  z-index: 2;
+  text-shadow: none;
+  overflow-y: auto;
+
+  .answer {
+    margin-top: 20px;
+    color: $success;
+  }
+}
+
+.selection-container {
+  padding: 40px 80px;
+  width: 100%;
+  text-align: center;
+
+  a {
+    display: block;
+    font-size: 24px;
+    line-height: 60px;
+    text-decoration: none;
+  }
+}

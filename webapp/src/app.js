@@ -1,6 +1,6 @@
 (function() {
   angular.
-  module('app', ['ngRoute']).
+  module('app', ['ngRoute', 'ngSanitize']).
   run(['$rootScope', '$http', 'QuestionService', 'SoundService', run]).
   config(['$routeProvider', config]);
 

@@ -10,11 +10,11 @@
       <div class="face">
         {{question.question}}
 
-        <button class="reveal" ng-click="reveal(question)">Reveal</button>
+        <button class="reveal" ng-if="!question.reveal" ng-click="reveal(question)">reveal</button>
+        <button class="dismiss" ng-if="question.reveal" ng-click="dismiss()">dismiss</button>
       </div>
-      <div class="back" ng-if="question.reveal">
-        {{question.answer}}
-      </div>
+
+      <div class="answer back" ng-if="question.reveal" ng-bind-html="question.answer"></div>
     </div>
   </div>
 </div>

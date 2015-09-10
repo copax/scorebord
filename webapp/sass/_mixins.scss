@@ -1,0 +1,20 @@
+/* mixins */
+@mixin button($color) {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: #fff;
+  border: 1px solid $color;
+  color: $color;
+  font-weight: 300;
+  border-radius: 20px;
+  padding: 5px 15px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+
+  &:hover {
+    color: #fff;
+    background: $color;
+  }
+}
