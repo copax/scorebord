@@ -31,5 +31,12 @@
         return response.data;
       });
     };
+
+    this.getRandomQuestions = function(round) {
+      return $http.get('/api/index.php/getquestionsrandom/' + round).then(function(response) {
+        self.cache = response.data;
+        return self.cache;
+      });
+    }
   }
 })();

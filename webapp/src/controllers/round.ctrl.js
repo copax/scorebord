@@ -1,10 +1,12 @@
 (function() {
   angular.
   module('app').
-  controller('RoundCtrl', ['$scope', '$http', '$routeParams', RoundController]);
+  controller('RoundCtrl', ['$scope', '$http', '$routeParams', 'SoundService', RoundController]);
 
-  function RoundController($scope, $http, $routeParams) {
+  function RoundController($scope, $http, $routeParams, SoundService) {
     var pollInterval = setInterval(buttonPoll, 100);
+
+    SoundService.getLoadingDollarAmount().play();
 
     $scope.team = {name: 'Awaiting Buzzes!!!'};
 
@@ -27,6 +29,8 @@
     }
 
     $scope.$on('$destroy', function() {
+      //SoundService.getLoadingDollarAmount().stop();
+      SoundService.killAll();
       clearInterval(pollInterval);
       pollInterval = null;
     });
