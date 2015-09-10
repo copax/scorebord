@@ -34,7 +34,8 @@
     text-decoration: none;
 
     &:hover {
-      background: lighten($dark, 10%);
+      background: rgba(255,255,255,0.15);
+      color: $dark;
     }
   }
 }
@@ -70,7 +71,7 @@
   background: $primary;
   color: $light;
   transition: all .3s ease-out;
-  animation: loadQuestion 0.5s ease-in;
+  animation: loadQuestion 0.75s ease-in-out;
   margin: 3px;
   text-shadow: 0 2px rgba(0, 0, 0, 0.25);
 
@@ -112,7 +113,6 @@
   background: #fff;
   cursor: default;
   color: $dark;
-  border-radius: 20px;
   box-shadow: 0 3px 15px rgba(0,0,0,0.5);
   border: none;
   position: absolute;
@@ -137,9 +137,15 @@
   text-align: center;
 
   a {
+    color: $light;
     display: block;
     font-size: 24px;
     line-height: 60px;
     text-decoration: none;
+
+    &:hover {
+      background: rgba(255,255,255,0.15);
+      color: $dark;
+    }
   }
 }
