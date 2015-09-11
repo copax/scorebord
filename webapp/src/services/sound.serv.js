@@ -7,13 +7,10 @@
   service('SoundService', ['ngAudio', function(ngAudio) {
     this.sounds = {
       wooshingEffect: ngAudio.load('snd/j-woosh.wav'),
-      takenTooLongToAnswer: ngAudio.load('snd/j64-outtatime.wav'),
-      loadingDollarAmmount: ngAudio.load('snd/jboardfill.wav'),
-      runOutOfTimeToAnswer: ngAudio.load('snd/jtime.wav'),
-      contestantsRangIn: ngAudio.load('snd/j64-ringin.wav')
+      takenTooLongToAnswer: ngAudio.load('snd/j64-outtatime.wav')
     };
 
-    this.killAll = function() {
+    this.killAll = function(sound) {
       for (var prop in this.sounds) {
         this.sounds[prop].stop();
       }
@@ -45,7 +42,7 @@
      * or no players respond, this is played
      */
     this.getRunOutOfTimeToAnswer = function() {
-      return this.sounds.runOutOfTimeToAnswer;
+      return ngAudio.load('snd/jtime.wav');
     }
 
     /*
@@ -53,7 +50,7 @@
      * amounts into the board
      */
     this.getLoadingDollarAmount = function() {
-      return this.sounds.loadingDollarAmmount;
+      return ngAudio.load('snd/jboardfill.wav');
     }
 
     /*
@@ -82,7 +79,7 @@
      * Description: This ding was played when contestants rang-in
      */
     this.getContestantsRangIn = function() {
-      return this.sounds.contestantsRangIn;
+      return ngAudio.load('snd/j64-ringin.wav');
     }
 
     /*

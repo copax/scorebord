@@ -20,8 +20,7 @@
         $scope.question.activated = false;
 
         var woosh = SoundService.getWooshingEffect(),
-            timedOut = SoundService.getRunOutOfTimeToAnswer(),
-            endOfRound = SoundService.getEndOfRound();
+            timedOut = SoundService.getTakenTooLongToAnswer();
 
         woosh.volume = 0.5;
         timedOut.volume = 1.0;
@@ -32,26 +31,27 @@
 
         function dismiss() {
           QuestionService.deactivateAll();
-          
-          if (QuestionService.allQuestionsActivated()) {
-            endOfRound.play();
-            console.log('Probably a good time to start a new round!');
-          }
         }
 
         function activate(question) {
           if (!question.activated) {
+            woosh.play();
 
             function outOfTime() {
               timedOut.play();
               //QuestionService.deactivateAll();
             }
 
+
             triviaSoundTimeout = setTimeout(outOfTime, 15000);
 
             QuestionService.deactivateAll();
             question.active = true;
             question.activated = true;
+
+            if (QuestionService.allQuestionsActivated()) {
+              console.log('Probably a good time to start a new round!');
+            }
           }
         }
       }
