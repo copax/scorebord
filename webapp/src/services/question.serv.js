@@ -19,7 +19,7 @@
 
     this.allQuestionsActivated = function() {
       return this.cache.every(function(category) {
-        return allQuestionsInCategoryActivated = category.questions.every(function(question) {
+        return category.questions.every(function(question) {
           return question.activated;
         });
       });
@@ -29,6 +29,13 @@
       return $http.get('/api/index.php/getquestions/' + round).then(function(response) {
         self.cache = response.data;
         return response.data;
+      });
+    };
+
+    this.getRandomQuestions = function(round) {
+      return $http.get('/api/index.php/getquestionsrandom/' + round).then(function(response) {
+        self.cache = response.data;
+        return self.cache;
       });
     };
   }
