@@ -83,6 +83,12 @@
   align-items: center;
   justify-content: center;
 
+  &.admin {
+    div {
+      display: block;
+    }
+  }
+
   .amount {
     color: $warn;
     font-size: 24px;

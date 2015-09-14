@@ -1,19 +1,7 @@
-<div class="trivia-question ng-class:{'activated': question.activated}"
+<div class="trivia-question admin ng-class:{'activated': question.activated}"
     ng-switch="question.active">
 
-  <span class="amount" ng-if="!question.activated">{{question.amount}}</span>
-  <span class="amount" ng-if="question.activated">&nbsp;</span>
-
-  <div class="modal" ng-switch-when="true">
-    <div class="question-active">
-      <div class="face">
-        {{question.question}}
-
-        <button class="reveal" ng-click="reveal(question)">Reveal</button>
-      </div>
-      <div class="back" ng-if="question.reveal">
-        {{question.answer}}
-      </div>
-    </div>
-  </div>
+  <div class="amount">{{question.amount}}</div>
+  <div class="question">{{question.question}}</div>
+  <div class="answer">{{question.answer}}</div>
 </div>
