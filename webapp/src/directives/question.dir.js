@@ -27,22 +27,33 @@
           QuestionService.deactivateAll();
         }
 
-        function activate(question) {
-          //if (!question.activated) {
-            question.outOfTime = false;
-            
-            triviaTimeout = setTimeout(function() {
-              question.outOfTime = true;
-            }, 15000);
-
-            QuestionService.deactivateAll();
-            question.active = true;
-            question.activated = true;
-
-            if (QuestionService.allQuestionsActivated()) {
-              console.log('Probably a good time to start a new round!');
+        function questionTimer() {
+          setInterval(function() {
+            if ($scope.time > 0) {
+              $scope.time --;
+            } else {
+              return "done";
             }
-          //}
+          }, 1000);
+        }
+
+        function activate(question) {
+          $scope.time = 15;
+          question.outOfTime = false;
+
+          triviaTimeout = setTimeout(function() {
+            question.outOfTime = true;
+          }, 15000);
+
+          questionTimer();
+
+          QuestionService.deactivateAll();
+          question.active = true;
+          question.activated = true;
+
+          if (QuestionService.allQuestionsActivated()) {
+            console.log('Probably a good time to start a new round!');
+          }
         }
       }
     };

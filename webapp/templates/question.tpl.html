@@ -8,6 +8,7 @@
   <div class="modal" ng-switch-when="true">
     <div class="question-active">
       <div class="face">
+        <div class="timer">{{time}}</div>
         {{question.question}}
 
         <button class="reveal" ng-if="!question.reveal" ng-click="reveal(question)">reveal</button>
