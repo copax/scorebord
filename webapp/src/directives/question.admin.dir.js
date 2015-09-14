@@ -1,9 +1,9 @@
 (function() {
   angular.
   module('app').
-  directive('triviaAdminQuestion', ['QuestionService', 'SoundService', 'ngAudio', TriviaAdminQuestion]);
+  directive('triviaAdminQuestion', ['QuestionService', TriviaAdminQuestion]);
 
-  function TriviaAdminQuestion(QuestionService, SoundService, ngAudio) {
+  function TriviaAdminQuestion(QuestionService) {
     return {
       restrict: 'E',
       templateUrl: '../../templates/question.admin.tpl.html',
@@ -12,8 +12,8 @@
         question: '='
       },
       link: function($scope, elem, attr, ctrl) {
-        $scope.activate = activate;
-        $scope.reveal = reveal;
+        //$scope.activate = activate;
+        //$scope.reveal = reveal;
       }
     };
   }

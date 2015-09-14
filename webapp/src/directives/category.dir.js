@@ -17,7 +17,7 @@
           return $scope.category.questions.every(function(question) {
             return question.activated;
           });
-        }
+        };
       }
     };
   }

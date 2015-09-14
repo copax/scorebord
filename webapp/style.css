@@ -153,6 +153,9 @@ h2 {
   .question-active .answer {
     margin-top: 20px;
     color: #57ab57; }
+  .question-active .out-of-time {
+    margin: 20px 0;
+    color: #ab5757; }
 
 .selection-container {
   padding: 40px 80px;

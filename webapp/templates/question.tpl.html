@@ -14,6 +14,8 @@
         <button class="dismiss" ng-if="question.reveal" ng-click="dismiss()">dismiss</button>
       </div>
 
+      <div class="out-of-time back" ng-if="question.outOfTime">Out of time!</div>
+
       <div class="answer back" ng-if="question.reveal" ng-bind-html="question.answer"></div>
     </div>
   </div>

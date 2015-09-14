@@ -1,30 +1,28 @@
 (function() {
   angular.
   module('app', ['ngRoute', 'ngSanitize']).
-  run(['$rootScope', '$http', 'QuestionService', 'SoundService', run]).
+  run(['$rootScope', '$http', 'QuestionService', run]).
   config(['$routeProvider', config]);
 
-  function run($rootScope, $http, QuestionService, SoundService) {
-    window.triviaSoundTimeout = null;
+  function run($rootScope, $http, QuestionService) {
+    window.triviaTimeout = null;
 
-    function killAllSoundsAndDeactivate() {
+    function deactivate() {
       $rootScope.$apply(function() {
+        window.triviaTimeout = null;
         QuestionService.deactivateAll();
-        SoundService.killAll();
-
-        clearTimeout(triviaSoundTimeout);
       });
     }
 
     window.addEventListener('keyup', (function(evt) {
       if (evt.keyCode === 27) {
-        killAllSoundsAndDeactivate();
+        deactivate();
       }
     }));
 
     window.addEventListener('click', function(evt) {
       if (evt.target.className.indexOf('modal') !== -1) {
-        killAllSoundsAndDeactivate();
+        deactivate();
       }
     });
   }
