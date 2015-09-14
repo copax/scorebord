@@ -95,6 +95,10 @@ h2 {
   -webkit-flex-direction: column;
   flex-direction: column; }
 
+.trivia-question-container {
+  flex: 1;
+  display: flex; }
+
 .trivia-question {
   -webkit-flex: 1;
   flex: 1;
@@ -131,7 +135,8 @@ h2 {
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.85);
-  z-index: 1; }
+  z-index: 1;
+  text-align: center; }
 
 .question-active {
   padding: 20px;

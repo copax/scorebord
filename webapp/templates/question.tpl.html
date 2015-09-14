@@ -1,9 +1,8 @@
-<div class="trivia-question ng-class:{'activated': question.activated}"
-    ng-click="activate(question)"
-    ng-switch="question.active">
-
-  <span class="amount" ng-if="!question.activated">{{question.amount}}</span>
-  <span class="amount" ng-if="question.activated">&nbsp;</span>
+<div class="trivia-question-container g-class:{'activated': question.activated}" ng-switch="question.active">
+  <div class="trivia-question" ng-click="activate(question)">
+    <span class="amount" ng-if="!question.activated">{{question.amount}}</span>
+    <span class="amount" ng-if="question.activated">&nbsp;</span>
+  </div>
 
   <div class="modal" ng-switch-when="true">
     <div class="question-active">
