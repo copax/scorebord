@@ -113,8 +113,19 @@ h2 {
   text-shadow: 0 2px rgba(0, 0, 0, 0.25);
   align-items: center;
   justify-content: center; }
-  .trivia-question.admin div {
-    display: block; }
+  .trivia-question.admin {
+    display: block;
+    padding: 10px; }
+    .trivia-question.admin div {
+      display: block; }
+    .trivia-question.admin .question {
+      font-style: italic; }
+    .trivia-question.admin .amount {
+      font-size: 12px; }
+    .trivia-question.admin .answer {
+      color: #57ab57; }
+    .trivia-question.admin:nth-child(odd) {
+      background: #5659c0; }
   .trivia-question .amount {
     color: #E8CA37;
     font-size: 24px;

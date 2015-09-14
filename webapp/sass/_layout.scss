@@ -84,8 +84,24 @@
   justify-content: center;
 
   &.admin {
+    display: block;
+    padding: 10px;
+
     div {
       display: block;
+    }
+    .question {
+      font-style: italic;
+    }
+    .amount {
+      font-size: 12px;
+    }
+    .answer {
+      color: $success;
+    }
+
+    &:nth-child(odd) {
+      background: lighten($primary, 10%);
     }
   }
 
