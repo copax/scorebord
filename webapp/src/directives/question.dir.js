@@ -34,7 +34,8 @@
           question.reveal = true;
         }
 
-        function dismiss() {
+        function dismiss(question) {
+          question.reveal = false;
           window.clearInterval(timer);
           timer = null;
 

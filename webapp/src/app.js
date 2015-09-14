@@ -20,11 +20,13 @@
       }
     }));
 
+    /*
     window.addEventListener('click', function(evt) {
       if (evt.target.className.indexOf('modal') !== -1) {
         deactivate();
       }
     });
+    */
   }
 
   function config($routeProvider) {
