@@ -1,4 +1,4 @@
 <div class="trivia-column" ng-if="category.questions && category.questions.length">
   <h2 class="trivia-question trivia-category"><span ng-if="!categoryFinished()">{{category.cat_name}}</span>&nbsp;</h2>
-  <trivia-question question="question" ng-repeat="question in category.questions | orderBy: 'amount'"></trivia-question>
+  <trivia-question question="question" ng-repeat="question in category.questions | orderBy: amount"></trivia-question>
 </div>
