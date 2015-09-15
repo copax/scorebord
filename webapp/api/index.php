@@ -77,10 +77,10 @@ $app->post('/loadquestion', function () use ($app) {
 
 $app->get('/getquestions/:round', function ($round) use ($app) {
 	$sql = "select sc.cat_name,sq.question,sq.answer, sq.amount " .
-		"from scorebord.sb_question sq " .
+		"from scorebord.sb_question_filtered sq " .
 		"join scorebord.sb_category sc on (sq.category_id = sc.cat_id) " .
 		"where sc.cat_id = :category and sq.round = :round " .
-		"order by sq.airdate, sc.cat_name, sq.amount";
+		"order by sc.cat_name, sq.amount";
 	try {
 		$db = getConnection();
 		$stmt = $db->prepare($sql);
@@ -88,111 +88,51 @@ $app->get('/getquestions/:round', function ($round) use ($app) {
 		$stmt->bindParam("category",$category);
 		$stmt->bindParam("round",$round);
 		$stmt->execute();
-		$animals = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$category1_questions = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$category1_name = $category1_questions[0]["cat_name"];
 
 		$category = 26;
 		$stmt->bindParam("category",$category);
 		$stmt->bindParam("round",$round);
 		$stmt->execute();
-		$fashion = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$category2_questions = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$category2_name = $category1_questions[0]["cat_name"];
 
 		$category = 49;
 		$stmt->bindParam("category",$category);
 		$stmt->bindParam("round",$round);
 		$stmt->execute();
-		$food = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$category3_questions = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$category3_name = $category1_questions[0]["cat_name"];
 
 		$category = 105;
 		$stmt->bindParam("category",$category);
 		$stmt->bindParam("round",$round);
 		$stmt->execute();
-		$letters = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$category4_questions = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$category4_name = $category1_questions[0]["cat_name"];
 
 		$category = 249;
 		$stmt->bindParam("category",$category);
 		$stmt->bindParam("round",$round);
 		$stmt->execute();
-		$homophones = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$category5_questions = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$category5_name = $category1_questions[0]["cat_name"];
 
 		$category = 770;
 		$stmt->bindParam("category",$category);
 		$stmt->bindParam("round",$round);
 		$stmt->execute();
-		$popmusic = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$category6_questions = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$category6_name = $category1_questions[0]["cat_name"];
 
 		$db = null;
-		echo '[{"cat_name": "Animals", "questions": ' . json_encode($animals) .'},' .
-			' { "cat_name": "Fashion", "questions": ' . json_encode($fashion) .'},' .
-			' { "cat_name": "Food", "questions": ' . json_encode($food) .'},' .
-			' { "cat_name": "3 Letter Words", "questions": ' . json_encode($letters) .'},' .
-			' { "cat_name": "Homophones", "questions": ' . json_encode($homophones) .'},' .
-			' { "cat_name": "Pop Music", "questions": ' . json_encode($popmusic) .'}' .
-			']';
-	} catch(PDOException $e) {
-		echo '{"error":{"text":'. $e->getMessage() .'}}';
-	}
-});
-
-$app->get('/getquestionsrandom/:round', function ($round) use ($app) {
-	$sql = "select sc.cat_name, q.question, q.answer, q.amount " .
-"from (select category_id, question,answer, amount from sb_question where category_id = :category and amount = 100 order by rand() limit 1) q " .
-"join sb_category sc on q.category_id = sc.cat_id " .
-"union " .
-"select sc.cat_name, q.question, q.answer, q.amount " .
-"from (select category_id, question,answer, amount from sb_question where category_id = :category and amount = 200 order by rand() limit 1) q " .
-"join sb_category sc on q.category_id = sc.cat_id " .
-"union " .
-"select sc.cat_name, q.question, q.answer, q.amount " .
-"from (select category_id, question,answer, amount from sb_question where category_id = :category and amount = 300 order by rand() limit 1) q " .
-"join sb_category sc on q.category_id = sc.cat_id " .
-"union " .
-"select sc.cat_name, q.question, q.answer, q.amount " .
-"from (select category_id, question,answer, amount from sb_question where category_id = :category and amount = 400 order by rand() limit 1) q " .
-"join sb_category sc on q.category_id = sc.cat_id " .
-"union " .
-"select sc.cat_name, q.question, q.answer, q.amount " .
-"from (select category_id, question,answer, amount from sb_question where category_id = :category and amount = 500 order by rand() limit 1) q " .
-"join sb_category sc on q.category_id = sc.cat_id";
-	try {
-		$db = getConnection();
-		$stmt = $db->prepare($sql);
-		$category = 21;
-		$stmt->bindParam("category",$category);
-		$stmt->execute();
-		$animals = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-		$category = 26;
-		$stmt->bindParam("category",$category);
-		$stmt->execute();
-		$fashion = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-		$category = 49;
-		$stmt->bindParam("category",$category);
-		$stmt->execute();
-		$food = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-		$category = 105;
-		$stmt->bindParam("category",$category);
-		$stmt->execute();
-		$letters = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-		$category = 249;
-		$stmt->bindParam("category",$category);
-		$stmt->execute();
-		$homophones = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-		$category = 770;
-		$stmt->bindParam("category",$category);
-		$stmt->execute();
-		$popmusic = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-		$db = null;
-		echo '[{"cat_name": "Animals", "questions": ' . json_encode($animals) .'},' .
-			' { "cat_name": "Fashion", "questions": ' . json_encode($fashion) .'},' .
-			' { "cat_name": "Food", "questions": ' . json_encode($food) .'},' .
-			' { "cat_name": "3 Letter Words", "questions": ' . json_encode($letters) .'},' .
-			' { "cat_name": "Homophones", "questions": ' . json_encode($homophones) .'},' .
-			' { "cat_name": "Pop Music", "questions": ' . json_encode($popmusic) .'}' .
+		echo '[{"cat_name": "'. $category1_name . '", "questions": ' . json_encode($category1_questions) .'},' .
+			' { "cat_name": "'. $category2_name . '", "questions": ' . json_encode($category2_questions) .'},' .
+			' { "cat_name": "'. $category3_name . '", "questions": ' . json_encode($category3_questions) .'},' .
+			' { "cat_name": "'. $category4_name . '", "questions": ' . json_encode($category4_questions) .'},' .
+			' { "cat_name": "'. $category5_name . '", "questions": ' . json_encode($category5_questions) .'},' .
+			' { "cat_name": "'. $category6_name . '", "questions": ' . json_encode($category6_questions) .'}' .
 			']';
 	} catch(PDOException $e) {
 		echo '{"error":{"text":'. $e->getMessage() .'}}';

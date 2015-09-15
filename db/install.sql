@@ -62,3 +62,17 @@ create table scorebord.sb_question(
   primary key (id),
   unique key sb_question_uk (category_id, answer,question,airdate,amount)
 );
+
+drop table scorebord.sb_question_filtered;
+create table scorebord.sb_question(
+  id int not null,
+  category_id int not null,
+  answer varchar(50) not null,
+  question varchar(255) not null,
+  airdate varchar(25) not null,
+  insdate date not null,
+  amount int not null,
+  round int,
+  primary key (id),
+  unique key sb_question_uk (category_id, answer,question,airdate,amount)
+);

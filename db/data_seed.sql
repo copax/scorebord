@@ -63,3 +63,5 @@ insert into scorebord.sb_category( cat_id, cat_name) values (249,'Homophones');
 insert into scorebord.sb_category( cat_id, cat_name) values (49,'Food');
 insert into scorebord.sb_category( cat_id, cat_name) values (770,'Pop Music');
 insert into scorebord.sb_category( cat_id, cat_name) values (26,'Fashion');
+	insert into scoreboard.sb_category( cat_id, cat_name ) values (89, 'Double Talk');
+		insert into scoreboard.sb_category( cat_id, cat_name ) values (999, 'Games');
