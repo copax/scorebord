@@ -7,8 +7,9 @@
     var pollInterval = setInterval(buttonPoll, 100);
 
     $scope.team = {name: 'Awaiting Buzzes!!!'};
-    $scope.nextRound = '#/round/' + parseInt(parseInt($routeParams.round) + 1) + '?mode=' + $routeParams.mode;
-    $scope.previousRound = '#/round/' + parseInt(parseInt($routeParams.round) - 1) + '?mode=' + $routeParams.mode;
+    $scope.mode = $routeParams.mode;
+    $scope.nextRound = parseInt(parseInt($routeParams.round) + 1);
+    $scope.previousRound = parseInt(parseInt($routeParams.round) - 1);
 
     var pollUrl = '/api/index.php/fetchteam/' + $routeParams.mode || '2TMS';
 

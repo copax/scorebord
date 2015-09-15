@@ -32,8 +32,7 @@
   function config($routeProvider) {
     $routeProvider.
     when('/', {
-      templateUrl: '/templates/mode.selection.tpl.html',
-      controller: ''
+      templateUrl: '/templates/mode.selection.tpl.html'
     }).
     when('/round/:round', {
       templateUrl: '/templates/round.tpl.html',
@@ -41,7 +40,7 @@
     }).
     when('/round/:round/admin', {
       templateUrl: '/templates/round.admin.tpl.html',
-      controller: 'RoundAdminCtrl'
+      controller: 'RoundCtrl'
     }).
     otherwise({
       redirectTo: '/'
