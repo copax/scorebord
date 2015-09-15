@@ -107,7 +107,11 @@ $app->get('/getquestions/:round', function ($round) use ($app) {
 			$category2_name = "";
 		}
 
-		$category = 49;
+		if($round == 7) {
+			$category = 89;
+		} else {
+			$category = 49;	
+		}
 		$stmt->bindParam("category",$category);
 		$stmt->bindParam("round",$round);
 		$stmt->execute();
@@ -118,7 +122,11 @@ $app->get('/getquestions/:round', function ($round) use ($app) {
 			$category3_name = "";
 		}
 
-		$category = 105;
+		if($round == 7) {
+			$category = 999;
+		} else {
+			$category = 105;
+		}
 		$stmt->bindParam("category",$category);
 		$stmt->bindParam("round",$round);
 		$stmt->execute();
