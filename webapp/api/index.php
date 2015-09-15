@@ -84,47 +84,48 @@ $app->get('/getquestions/:round', function ($round) use ($app) {
 	try {
 		$db = getConnection();
 		$stmt = $db->prepare($sql);
+		
 		$category = 21;
 		$stmt->bindParam("category",$category);
 		$stmt->bindParam("round",$round);
 		$stmt->execute();
 		$category1_questions = $stmt->fetchAll(PDO::FETCH_OBJ);
-		$category1_name = $category1_questions[0]->cat_name;
+		if(!empty($category1_questions)) $category1_name = $category1_questions[0]->cat_name;
 
 		$category = 26;
 		$stmt->bindParam("category",$category);
 		$stmt->bindParam("round",$round);
 		$stmt->execute();
 		$category2_questions = $stmt->fetchAll(PDO::FETCH_OBJ);
-		$category2_name = $category2_questions[0]->cat_name;
+		if(!empty($category2_questions)) $category2_name = $category2_questions[0]->cat_name;
 
 		$category = 49;
 		$stmt->bindParam("category",$category);
 		$stmt->bindParam("round",$round);
 		$stmt->execute();
 		$category3_questions = $stmt->fetchAll(PDO::FETCH_OBJ);
-		$category3_name = $category3_questions[0]->cat_name;
+		if(!empty($category3_questions)) $category3_name = $category3_questions[0]->cat_name;
 
 		$category = 105;
 		$stmt->bindParam("category",$category);
 		$stmt->bindParam("round",$round);
 		$stmt->execute();
 		$category4_questions = $stmt->fetchAll(PDO::FETCH_OBJ);
-		$category4_name = $category4_questions[0]->cat_name;
+		if(!empty($category4_questions)) $category4_name = $category4_questions[0]->cat_name;
 
 		$category = 249;
 		$stmt->bindParam("category",$category);
 		$stmt->bindParam("round",$round);
 		$stmt->execute();
 		$category5_questions = $stmt->fetchAll(PDO::FETCH_OBJ);
-		$category5_name = $category5_questions[0]->cat_name;
+		if(!empty($category5_questions)) $category5_name = $category5_questions[0]->cat_name;
 
 		$category = 770;
 		$stmt->bindParam("category",$category);
 		$stmt->bindParam("round",$round);
 		$stmt->execute();
 		$category6_questions = $stmt->fetchAll(PDO::FETCH_OBJ);
-		$category6_name = $category6_questions[0]->cat_name;
+		if(!empty($category6_questions)) $category6_name = $category6_questions[0]->cat_name;
 
 		$db = null;
 		echo '[{"cat_name": "'. $category1_name . '", "questions": ' . json_encode($category1_questions) .'},' .
