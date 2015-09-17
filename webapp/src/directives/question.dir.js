@@ -26,7 +26,10 @@
 
         $scope.$on('$destroy', function() {
           BuzzrService.resetBuzzrService();
-          killTimeWatch();
+          
+          if (typeof killTimeWatch === 'function') {
+            killTimeWatch();
+          }
         });
 
         function reveal(question) {
