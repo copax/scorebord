@@ -1,9 +1,9 @@
 (function() {
   angular.
   module('app').
-  directive('triviaQuestion', ['QuestionService', TriviaQuestion]);
+  directive('triviaQuestion', ['QuestionService', 'BuzzrService', TriviaQuestion]);
 
-  function TriviaQuestion(QuestionService) {
+  function TriviaQuestion(QuestionService, BuzzrService) {
     return {
       restrict: 'E',
       templateUrl: '../../templates/question.tpl.html',
@@ -12,7 +12,7 @@
         question: '='
       },
       link: function($scope, elem, attr, ctrl) {
-        var timer;
+        var killTimeWatch;
 
         $scope.activate = activate;
         $scope.reveal = reveal;
@@ -22,49 +22,39 @@
         $scope.question.activated = false;
         $scope.question.reveal = false;
 
+        $scope.time = BuzzrService.getTimeLeft();
+
         $scope.$on('$destroy', function() {
-          window.clearInterval(timer);
-          timer = null;
+          BuzzrService.resetBuzzrService();
+          killTimeWatch();
         });
 
         function reveal(question) {
-          window.clearInterval(timer);
-          timer = null;
-
           question.reveal = true;
+
+          BuzzrService.stopButtonPressInterval();
         }
 
         function dismiss(question) {
           question.reveal = false;
-          window.clearInterval(timer);
-          timer = null;
 
+          BuzzrService.stopButtonPressInterval();
           QuestionService.deactivateAll();
-        }
-
-        function questionTimer() {
-          $scope.time = 15;
-
-          return window.setInterval(function() {
-            if ($scope.time > 0) {
-              $scope.time --;
-            } else {
-              return "done";
-            }
-          }, 1000);
         }
 
         function activate(question) {
           if (!question.active) {
             question.outOfTime = false;
 
-            $scope.$watch('time', function(current) {
-              if (current === 0) {
-                question.outOfTime = true;
-              }
+            BuzzrService.registerListeners(function(timeLeft) {
+              $scope.time = timeLeft;
             });
 
-            timer = questionTimer();
+            killTimeWatch = $scope.$watch('time', function(currentTime) {
+              question.outOfTime = (currentTime === 0);
+            });
+
+            if (BuzzrService.hasButtonBeenPressed()) return;
 
             QuestionService.deactivateAll();
             question.active = true;

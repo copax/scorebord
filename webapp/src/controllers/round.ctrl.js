@@ -20,16 +20,7 @@
             $scope.team = response.data.team[0];
 
             if (BuzzrService.hasButtonBeenPressed()) return;
-            BuzzrService.buttonPressed(
-              function(secondsLeft) {
-                /* update progress */
-                console.log("RoundCtrl: " + secondsLeft);
-              },
-              function() {
-                /* timer has expired do yo thing! */
-                console.log("RoundCtrl: time expired");
-                BuzzrService.stopButtonPressInterval();
-              });
+            BuzzrService.buttonPressed();
           }
         } else {
           if ($scope.team.name !== 'Awaiting Buzzes!!!') {
