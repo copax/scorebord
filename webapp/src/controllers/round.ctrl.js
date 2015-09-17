@@ -1,9 +1,9 @@
 (function() {
   angular.
   module('app').
-  controller('RoundCtrl', ['$scope', '$http', '$routeParams', RoundController]);
+  controller('RoundCtrl', ['$scope', '$http', '$routeParams', 'BuzzrService', RoundController]);
 
-  function RoundController($scope, $http, $routeParams) {
+  function RoundController($scope, $http, $routeParams, BuzzrService) {
     var pollInterval = setInterval(buttonPoll, 100);
 
     $scope.team = {name: 'Awaiting Buzzes!!!'};
@@ -18,10 +18,14 @@
         if (response.data && response.data.team.length) {
           if (response.data.team[0].name !== $scope.team) {
             $scope.team = response.data.team[0];
+
+            if (BuzzrService.hasButtonBeenPressed()) return;
+            BuzzrService.buttonPressed();
           }
         } else {
           if ($scope.team.name !== 'Awaiting Buzzes!!!') {
             $scope.team = {name: 'Awaiting Buzzes!!!'};
+            BuzzrService.resetBuzzrService();
           }
         }
       });
@@ -30,6 +34,7 @@
     $scope.$on('$destroy', function() {
       clearInterval(pollInterval);
       pollInterval = null;
+      BuzzrService.resetBuzzrService();
     });
   }
 })();
