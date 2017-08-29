@@ -1,15 +1,22 @@
 (function() {
   angular.
   module('app').
-  controller('TeamCtrl', ['$scope', '$routeParams', '$http', 'TeamSelectionService', TeamController]);
+  controller('TeamCtrl', ['$scope', '$routeParams', '$http', TeamController]);
 
-  function TeamController($scope, $routeParams, $http, TeamSelectionService) {
-    if ($routeParams && $routeParams.round) {
-      $scope.round = $routeParams.round;
+  function TeamController($scope, $routeParams, $http) {
 
-      TeamSelectionService.getQuestions($routeParams.round).then(function(data) {
-        $scope.categories = data;
-      });
-    }
+    $scope.teamCount = 4;
+
+
+
+
+
+    // if ($routeParams && $routeParams.) {
+    //   $scope.round = $routeParams.round;
+    //
+    //   TeamSelectionService.getQuestions($routeParams.round).then(function(data) {
+    //     $scope.categories = data;
+    //   });
+    // }
   }
 })();

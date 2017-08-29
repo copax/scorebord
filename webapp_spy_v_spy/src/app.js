@@ -1,16 +1,15 @@
 (function() {
   angular.
   module('app', ['ngRoute', 'ngSanitize']).
-  run(['$rootScope', '$http', 'QuestionService', run]).
+  run(['$rootScope', '$http', run]).
   config(['$routeProvider', config]);
 
-  function run($rootScope, $http, QuestionService) {
-    window.triviaTimeout = null;
+  function run($rootScope, $http) {
+
 
     function deactivate() {
       $rootScope.$apply(function() {
-        window.triviaTimeout = null;
-        QuestionService.deactivateAll();
+          
       });
     }
 
@@ -31,11 +30,11 @@
 
   function config($routeProvider) {
     $routeProvider.
-    when('/', {
-      templateUrl: '/templates/team.selection.tpl.html'
+    when('/admin', {
+      templateUrl: '/templates/team.admin.tpl.html'
     }).
     otherwise({
-      redirectTo: '/'
+        templateUrl: '/templates/default.tpl.html'
     });
   }
 })();
