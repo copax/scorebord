@@ -32,15 +32,7 @@
   function config($routeProvider) {
     $routeProvider.
     when('/', {
-      templateUrl: '/templates/mode.selection.tpl.html'
-    }).
-    when('/round/:round', {
-      templateUrl: '/templates/round.tpl.html',
-      controller: 'RoundCtrl'
-    }).
-    when('/round/:round/admin', {
-      templateUrl: '/templates/round.admin.tpl.html',
-      controller: 'RoundCtrl'
+      templateUrl: '/templates/team.selection.tpl.html'
     }).
     otherwise({
       redirectTo: '/'

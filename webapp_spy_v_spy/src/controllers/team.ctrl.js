@@ -1,13 +1,13 @@
 (function() {
   angular.
   module('app').
-  controller('TriviaCtrl', ['$scope', '$routeParams', '$http', 'QuestionService', TriviaController]);
+  controller('TeamCtrl', ['$scope', '$routeParams', '$http', 'TeamSelectionService', TeamController]);
 
-  function TriviaController($scope, $routeParams, $http, QuestionService) {
+  function TeamController($scope, $routeParams, $http, TeamSelectionService) {
     if ($routeParams && $routeParams.round) {
       $scope.round = $routeParams.round;
 
-      QuestionService.getQuestions($routeParams.round).then(function(data) {
+      TeamSelectionService.getQuestions($routeParams.round).then(function(data) {
         $scope.categories = data;
       });
     }
