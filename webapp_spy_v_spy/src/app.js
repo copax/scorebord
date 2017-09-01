@@ -30,8 +30,9 @@
 
   function config($routeProvider) {
     $routeProvider.
-    when('/admin', {
-      templateUrl: '/templates/team.admin.tpl.html'
+    when('/team/:action', {
+    	templateUrl: '/templates/team.selection.tpl.html',
+    	controller:  'TeamCtrl'
     }).
     otherwise({
         templateUrl: '/templates/default.tpl.html'
