@@ -1,41 +1,24 @@
-(function() {
-  angular.
-  module('app', ['ngRoute', 'ngSanitize']).
-  run(['$rootScope', '$http', run]).
-  config(['$routeProvider', config]);
+'use strict';
 
-  function run($rootScope, $http) {
+angular.module('SpyVsSpy', ['SpyVsSpy.TeamCtrl','SpyVsSpy.services','ngRoute'])
 
+    .config(['$routeProvider', function($routeProvider) {
+        $routeProvider.when('/', {
+            templateUrl: '/templates/default.tpl.html'
+        });
+        $routeProvider.when('/team/:p', {
+            templateUrl: '/templates/team.selection.tpl.html',
+            controller: 'TeamCtrl'
+        });
+        $routeProvider.otherwise({
+            templateUrl: '/templates/default.tpl.html',
+            //controller: 'TeamCtrl'
+        })
+    }])
 
-    function deactivate() {
-      $rootScope.$apply(function() {
-          
-      });
-    }
+    .run(function($rootScope) {
+        $rootScope.teams = "Team Chooser";
 
-    window.addEventListener('keyup', (function(evt) {
-      if (evt.keyCode === 27) {
-        deactivate();
-      }
-    }));
-
-    /*
-    window.addEventListener('click', function(evt) {
-      if (evt.target.className.indexOf('modal') !== -1) {
-        deactivate();
-      }
     });
-    */
-  }
 
-  function config($routeProvider) {
-    $routeProvider.
-    when('/team/:action', {
-    	templateUrl: '/templates/team.selection.tpl.html',
-    	controller:  'TeamCtrl'
-    }).
-    otherwise({
-        templateUrl: '/templates/default.tpl.html'
-    });
-  }
-})();
+ 
