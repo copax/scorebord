@@ -3,11 +3,28 @@
 angular.module('SpyVsSpy.TeamCtrl', ['ngRoute', 'ngCookies'])
     .controller('TeamCtrl', ['$scope','$routeParams','$cookies',
         function ($scope, $routeParams, $cookies) {
+    		
+    		$scope.teamsData = [['1','Austin Powers','austin_powers.jpg'],
+    			['2','KAOS','chaos.jpg'],
+    			['3','Ethan Hunt','ethan_hunt.jpg'],
+    			['4','Inspector Gadget','inspector_gadget.jpg'],
+    			['5','Jack Bauer','jack_bauer.jpg'],
+    			['6','Jack Ryan','jack_ryan.jpg'],
+    			['7','James Bond','james_bond.jpg'],
+    			['8','Jason Bourne','jason_bourne.jpg'],
+    			['9','The KGB','kgb.jpg'],
+    			['10','Maxwell Smart','maxwell_smart.jpg'],    		
+    			['11','Pink Panther','pink_panther.jpg'],
+    			['12','Sherlock Holmes','sherlock_holmes.jpg']];
+    		
     		$scope.teamCnts = [];
     		var teamMin = 1;
-            var teamMax = 12;
+            var teamMax = $scope.teamsData.length;
+            console.log('max - ' + teamMax);
             var randomTeam = 0;
             $scope.teamLevel = 1;
+			$scope.TEAMNAME = "Top Secret";
+			$scope.IMG_FILE = "spykit.jpg";
             
             $scope.teamCnts = $cookies.getObject('cnts');
             $scope.teamLevel = $cookies.get('teamLvl');
@@ -41,6 +58,8 @@ angular.module('SpyVsSpy.TeamCtrl', ['ngRoute', 'ngCookies'])
                 			$scope.teamCnts[randomTeam -1]++;
                 			filled = 1;
                 			console.log('filled - ' + (randomTeam - 1));
+                			$scope.TEAMNAME = $scope.teamsData[randomTeam - 1][1];
+                			$scope.IMG_FILE = $scope.teamsData[randomTeam - 1][2];
                 		}
                 	}
                     
