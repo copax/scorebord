@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('SpyVsSpy', ['SpyVsSpy.TeamCtrl','SpyVsSpy.services','ngRoute'])
+angular.module('SpyVsSpy', ['SpyVsSpy.TeamCtrl','ngRoute'])
 
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/', {
