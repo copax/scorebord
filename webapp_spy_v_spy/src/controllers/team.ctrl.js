@@ -40,7 +40,9 @@ angular.module('SpyVsSpy.TeamCtrl', ['ngRoute', 'ngCookies'])
 
             if ($routeParams) {
                 if ($routeParams.p == 'c57664b4-32f2-4d5b-8093-be8f01b7927a') {
-                    for (var i = 0; i < teamMax; i++) {
+                	$scope.teamCnts = [];
+                	$scope.teamLevel = 1;
+                	for (var i = 0; i < teamMax; i++) {
                     	$scope.teamCnts[i] = 0;
                     }
                     $cookies.putObject('cnts',$scope.teamCnts);
