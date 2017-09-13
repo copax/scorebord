@@ -25,7 +25,7 @@ angular.module('SpyVsSpy.TeamCtrl', ['ngRoute', 'ngCookies'])
             var teamMax = $scope.teamsData.length;
             var randomTeam = 0;
             $scope.teamLevel = 1;
-			$scope.TEAMNAME = "Top Secret";
+			$scope.TEAMNAME = "Agent - Awaiting Assignment";
 			$scope.IMG_FILE = "spykit.jpg";
 			
     		//Button Poll 
