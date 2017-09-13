@@ -1,6 +1,6 @@
 (function() {
   angular.
-  module('SpyVsSpy').
+  module('app').
   service('BuzzrService', [BuzzrService]);
 
   function BuzzrService() {
@@ -14,7 +14,7 @@
     };
 
     this.buttonPressed = function() {
-      this.decrementTimer = setInterval(function() {	
+      this.decrementTimer = setInterval(function() {
         if (self.totalSeconds > 0) {
           self.totalSeconds--;
         }

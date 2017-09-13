@@ -1,49 +1,24 @@
-(function() {
-  angular.
-  module('app', ['ngRoute', 'ngSanitize']).
-  run(['$rootScope', '$http', 'QuestionService', run]).
-  config(['$routeProvider', config]);
+'use strict';
 
-  function run($rootScope, $http, QuestionService) {
-    window.triviaTimeout = null;
+angular.module('SpyVsSpy', ['SpyVsSpy.TeamCtrl','ngRoute'])
 
-    function deactivate() {
-      $rootScope.$apply(function() {
-        window.triviaTimeout = null;
-        QuestionService.deactivateAll();
-      });
-    }
+    .config(['$routeProvider', function($routeProvider) {
+        $routeProvider.when('/', {
+            templateUrl: '/templates/default.tpl.html'
+        });
+        $routeProvider.when('/team/:p', {
+            templateUrl: '/templates/team.selection.tpl.html',
+            controller: 'TeamCtrl'
+        });
+        $routeProvider.otherwise({
+            templateUrl: '/templates/default.tpl.html',
+            //controller: 'TeamCtrl'
+        })
+    }])
 
-    window.addEventListener('keyup', (function(evt) {
-      if (evt.keyCode === 27) {
-        deactivate();
-      }
-    }));
+    .run(function($rootScope) {
+        $rootScope.teams = "Team Chooser";
 
-    /*
-    window.addEventListener('click', function(evt) {
-      if (evt.target.className.indexOf('modal') !== -1) {
-        deactivate();
-      }
     });
-    */
-  }
 
-  function config($routeProvider) {
-    $routeProvider.
-    when('/', {
-      templateUrl: '/templates/mode.selection.tpl.html'
-    }).
-    when('/round/:round', {
-      templateUrl: '/templates/round.tpl.html',
-      controller: 'RoundCtrl'
-    }).
-    when('/round/:round/admin', {
-      templateUrl: '/templates/round.admin.tpl.html',
-      controller: 'RoundCtrl'
-    }).
-    otherwise({
-      redirectTo: '/'
-    });
-  }
-})();
+ 
