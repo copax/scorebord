@@ -184,7 +184,7 @@ try:
                 inputs_locked = False
                 button_pressed = "resetteam"
                 GPIO.output(led_activated, GPIO.LOW)
-		postReset()
+	#	postReset()
 		continue
 
 except KeyboardInterrupt:

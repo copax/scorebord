@@ -29,7 +29,7 @@ angular.module('SpyVsSpy.TeamCtrl', ['ngRoute', 'ngCookies'])
 			$scope.IMG_FILE = "spykit.jpg";
 			
     		//Button Poll 
-    		var pollInterval = setInterval(buttonPoll, 1000);
+    		var pollInterval = setInterval(buttonPoll, 2000);
     		var pollUrl = '/api/index.php/fetchcurrentteam';
     		
     		var resetUrl = '/api/index.php/resetteam';
