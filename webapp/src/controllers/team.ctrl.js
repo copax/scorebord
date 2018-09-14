@@ -1,23 +1,23 @@
 'use strict';
 
-angular.module('SpyVsSpy.TeamCtrl', ['ngRoute', 'ngCookies'])
+angular.module('TeamDay.TeamCtrl', ['ngRoute', 'ngCookies'])
     .controller('TeamCtrl', ['$scope','$routeParams','$cookies','$http','$route',
         function ($scope, $routeParams, $cookies, $http, $route) {
 
     		//Global Team Data
-    		$scope.teamsData = [['1','Austin Powers','austin_powers.jpg'],
-    			['2','KAOS','chaos.jpg'],
-    			['3','Ethan Hunt','ethan_hunt.jpg'],
-    			['4','Inspector Gadget','inspector_gadget.jpg'],
-    			['5','Jack Bauer','jack_bauer.jpg'],
-    			['6','Jack Ryan','jack_ryan.jpg'],
-    			['7','James Bond','james_bond.jpg'],
-    			['8','Jason Bourne','jason_bourne.jpg'],
-    			['9','The KGB','kgb.jpg'],
-    			['10','Maxwell Smart','maxwell_smart.jpg'],    		
-    			['11','Pink Panther','pink_panther.jpg'],
-    			['12','Sherlock Holmes','sherlock_holmes.jpg']];
-    		
+			$scope.teamsData = [['1','Avengers','avengers.jpg'],
+				['2','Back to the Future','back_to_the_future.jpg'],
+				['3','Ghostbusters','ghostbusters.jpg'],
+				['4','Guardians of the Galaxy','gotg.jpg'],
+				['5','Harry Potter','harry_potter.jpg'],
+				['6','Indiana Jones','indiana_jones.jpg'],
+				['7','James Bond','james_bond_2.jpg'],
+				['8','Jurassic Park','jurassic_park.jpg'],
+				['9','Major League','major_league.jpg'],
+				['10','Star Trek','star_trek.jpg'],    		
+				['11','Star Wars','star_wars.jpg'],
+				['12','The Godfather','the_godfather.jpg']];
+				
     		
     		//Team Vars
     		$scope.teamCnts = [];
@@ -25,8 +25,8 @@ angular.module('SpyVsSpy.TeamCtrl', ['ngRoute', 'ngCookies'])
             var teamMax = $scope.teamsData.length;
             var randomTeam = 0;
             $scope.teamLevel = 1;
-			$scope.TEAMNAME = "Agent - Awaiting Assignment";
-			$scope.IMG_FILE = "spykit.jpg";
+			$scope.TEAMNAME = "Box Office";
+			$scope.IMG_FILE = "boxoffice.jpg";
 			
     		//Button Poll 
     		var pollInterval = setInterval(buttonPoll, 2000);

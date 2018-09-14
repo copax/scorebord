@@ -1,6 +1,6 @@
 (function() {
   angular.
-  module('SpyVsSpy').
+  module('TeamDay').
   service('BuzzrService', [BuzzrService]);
 
   function BuzzrService() {
